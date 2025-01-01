@@ -1,0 +1,54 @@
+.line {
+	position: relative;
+
+	width: 25px;
+	height: 10px;
+
+	margin-top: 50px;
+	padding: 0;
+
+	background: rgb(237, 123, 123);
+	background: linear-gradient(
+		90deg,
+		rgba(237, 123, 123, 1) 0%,
+		rgba(235, 232, 143, 1) 100%
+	);
+
+	border-radius: 30px;
+}
+
+.unerline {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	width: 300px;
+	height: 10px;
+
+	border-radius: 30px;
+	border: 1px solid #e1e1e1;
+}
+
+.runner {
+	position: absolute;
+	top: -44px;
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.circle {
+	width: 5px;
+	height: 22px;
+
+	background-color: #fff;
+
+	border-radius: 40px;
+	border: 2px solid #e24136;
+}
+
+.percent {
+	color: #3bbc2d;
+}
