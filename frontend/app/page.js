@@ -26,6 +26,10 @@ export default function Home() {
             title: "Сообщение никите",
             body: "Никитос, проект делается, все на мази вроде как",
         },
+        {
+            title: "ДАВАНИКА ПРИВЕТ",
+            body: "Никитос, проект делается, все на мази вроде как",
+        },
     ];
     useEffect(() => {
         function run(progress) {
@@ -62,7 +66,7 @@ export default function Home() {
 
         haveMessage(arr);
 
-        run(50);
+        run(70);
     }, []);
     return (
         <>
