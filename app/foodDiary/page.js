@@ -361,6 +361,60 @@ export default function FoodDiary() {
                     })}
                 </div>
             </div>
+
+            <div className={styles.foodDiaryProgress}>
+                <div className={styles.foodDiaryProgressWrapper}>
+                    <div className={styles.foodDiaryProgressHeadline}>
+                        <span className={styles.reslutOfDayText}>Результат за день</span>
+                        <span className={styles.reslutOfDayCount}>6 / 10</span>
+                    </div>
+                    {/* foodDiaryProgressHeadline */}
+
+                    <div className={styles.resultBZUWrapper}>
+                        <div className={styles.resultBZURow}>
+                            <div className={styles.resultBZUImg}>
+                                <img src='/assets/icons/chicken.png'/>
+                            </div>
+                            <div className={styles.resultBZUName}>
+                                <span>Белки</span>
+                            </div>
+                            <div className={styles.resultBZUCount}>
+                                <span>22</span>
+                            </div>
+
+                        </div>
+                        {/* resultBZURow */}
+
+                        <div className={styles.resultBZURow}>
+                            <div className={styles.resultBZUImg}>
+                                <img src='/assets/icons/pear.png'/>
+                            </div>
+                            <div className={styles.resultBZUName}>
+                                <span>Жиры</span>
+                            </div>
+                            <div className={styles.resultBZUCount}>
+                                <span>22</span>
+                            </div>
+
+                        </div>
+                        {/* resultBZURow */}
+
+                        <div className={styles.resultBZURow}>
+                            <div className={styles.resultBZUImg}>
+                                <img src='/assets/icons/vegetables.png'/>
+                            </div>
+                            <div className={styles.resultBZUName}>
+                                <span>Углеводы</span>
+                            </div>
+                            <div className={styles.resultBZUCount}>
+                                <span>22</span>
+                            </div>
+
+                        </div>
+                        {/* resultBZURow */}
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

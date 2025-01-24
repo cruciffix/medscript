@@ -632,3 +632,165 @@
     font-size: 15px;
 
 }
+
+/* doodDiaryProgress */
+.foodDiaryProgress {
+    margin-top: 30px;
+}
+
+.resultBZUWrapper {
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    padding: 10px 0;
+
+    background-color: #fff;
+
+    -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+
+    border-radius: 15px;
+}
+
+.foodDiaryProgressHeadline {
+    text-align: center;
+}
+
+.reslutOfDayText {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #3bbc2d;
+}
+
+.reslutOfDayCount {
+    color: #E2D73E;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.resultBZURow {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
+}
+
+.resultBZUImg {
+    width: 17%;
+}
+
+.resultBZUName {
+    width: 40%;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: #3BBC2D;
+}
+
+.resultBZUCount {
+
+    font-size: 25px;
+    font-weight: 700;
+    color: #3BBC2D;
+    
+}
+
+
+/* filtersCurrency */
+.filtersCurrencyWrapper {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter, .currency {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+
+    padding: 12px 20px;
+    background-color: #fff;
+
+    border-radius: 7px;
+
+    -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+
+}
+
+.filter img,
+.currency img {
+    margin-right: 6px;
+}
+
+.headerShop {
+    font-size: 14px;
+    color: #3BBC2D;
+}
+
+.shopItemRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.itemImg {
+    width: 70px;
+
+    text-align: center;
+
+    border-radius: 7px;
+
+    background-color: #fff;
+
+    -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+}
+
+
+
+.itemPrice {
+    display: flex;
+    align-items: center;
+}
+
+.itemPrice img {
+   
+    width: 30px;
+
+    margin-right: 10px;
+}
+
+.itemPrice span {
+    font-size: 21px;
+    font-weight: 600;
+    color: #3BBC2D;
+}
+
+.buy {
+
+    padding: 7px 27px;
+
+    color:#fff;
+    font-size: 17px;
+    font-weight: 600;
+    
+    
+    background-color: #3BBC2D;
+    border-radius: 7px;
+    
+
+}
