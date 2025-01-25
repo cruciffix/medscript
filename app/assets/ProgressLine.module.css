@@ -540,6 +540,12 @@
     overflow-y: scroll;
 }
 
+.closeListProductWrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .itemProductName {
     display: inline-block;
 
