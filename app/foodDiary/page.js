@@ -153,7 +153,7 @@ export default function FoodDiary() {
     function deleteSelectProduct(item, idx, event) {
         // Отменяем цвета выбранного продкута, возвращая дефлотные
         let elemNotSelect = document.querySelector(`#${item}`);
-        debugger
+        console.log(`${elemNotSelect} -- elemNotSelect, ${item} -- item`)
         elemNotSelect.classList.remove(styles.selectItemProductText);
         elemNotSelect.classList.add(styles.notSelectItemProductText);
 
