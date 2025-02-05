@@ -350,6 +350,7 @@ export default function FoodDiary() {
                                             if (index === indexMeal) {
                                                 return (
                                                     item.map((i, idx) => {
+                                                        debugger
                                                         return (
                                                             <div
                                                                 className={`${styles.listFoodElem} 0_${i}`}
