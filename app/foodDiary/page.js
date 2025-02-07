@@ -475,7 +475,7 @@ export default function FoodDiary() {
                                     <span>Белки</span>
                                 </div>
                                 <div className={styles.resultBZUCount}>
-                                    <span>22</span>
+                                    <span>{mealsZBU[0].proteins[1] + mealsZBU[1].proteins[1] + mealsZBU[2].proteins[1]}</span>
                                 </div>
 
                             </div>
@@ -489,7 +489,7 @@ export default function FoodDiary() {
                                     <span>Жиры</span>
                                 </div>
                                 <div className={styles.resultBZUCount}>
-                                    <span>22</span>
+                                    <span>{mealsZBU[0].fats[1] + mealsZBU[1].fats[1] + mealsZBU[2].fats[1]}</span>
                                 </div>
 
                             </div>
@@ -503,7 +503,7 @@ export default function FoodDiary() {
                                     <span>Углеводы</span>
                                 </div>
                                 <div className={styles.resultBZUCount}>
-                                    <span>22</span>
+                                    <span>{mealsZBU[0].carbohydrates[1] + mealsZBU[1].carbohydrates[1] + mealsZBU[2].carbohydrates[1]}</span>
                                 </div>
 
                             </div>
