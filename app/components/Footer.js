@@ -4,25 +4,33 @@ const Footer = () => {
     return (
         <footer>
             <div className={styles.footerWrapper}>
-                <img
-                    src="/assets/icons/home.png"
-                    className={styles.footerIcon}
-                />
+                <Link href="/">
+                    <img
+                        src="/assets/icons/home.png"
+                        className={styles.footerIcon}
+                    />
+                </Link>
 
-                <img
-                    src="/assets/icons/spoonAndFork.png"
-                    className={styles.footerIcon}
-                />
+                <Link href="/foodDiary">
+                    <img
+                        src="/assets/icons/spoonAndFork.png"
+                        className={styles.footerIcon}
+                    />
+                </Link>
 
-                <img
-                    src="/assets/icons/shop.png"
-                    className={styles.footerIcon}
-                />
+                <Link href="/shop">
+                    <img
+                        src="/assets/icons/shop.png"
+                        className={styles.footerIcon}
+                    />
+                </Link>
+                <Link href="/shop">
+                    <img
+                        src="/assets/icons/customer.png"
+                        className={styles.footerIcon}
+                    />
+                </Link>
 
-                <img
-                    src="/assets/icons/customer.png"
-                    className={styles.footerIcon}
-                />
             </div>
         </footer>
     );

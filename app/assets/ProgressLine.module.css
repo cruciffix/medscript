@@ -69,6 +69,8 @@
 
 /* Новые сообщения и рейтиинг */
 .ratingAndMessage {
+    position: relative;
+
     margin: 0 0 0 0;
     padding: 6px 18px 18px 18px;
 
@@ -165,7 +167,19 @@
 
 /* Поле для новых сообщений messageField */
 .messageField {
-    display: none;
+    position: absolute;
+    z-index: 1000;
+    top: 60px;
+    left: 0;
+
+    margin: 0;
+    padding: 6px 18px 18px 18px;
+
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+
+    border-radius: 10px;
+
+    background-color: #fff;
 }
 
 .messageWrapper {

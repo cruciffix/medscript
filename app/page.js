@@ -10,7 +10,7 @@ export default function Home() {
     const runnerRef = useRef(null);
     const progressLine = useRef(null);
 
-    const [checkMessage, isCheckMessage] = useState(false);
+    const [checkMessage, isCheckMessage] = useState(true);
 
     const messageField = useRef(null);
     const isHaveMessage = useRef(null);
@@ -57,7 +57,6 @@ export default function Home() {
                     message.classList.add(styles.isHaveMessageTrue);
                     message.addEventListener("click", () => {
                         // Получаем поле, в котором отображаются сообщения
-
                         isCheckMessage((prev) => !prev);
                     });
                 }
@@ -114,9 +113,7 @@ export default function Home() {
                 </div>
 
                 <div
-                    className={`${styles.messageField}, ${
-                        checkMessage && styles.dNone
-                    }`}
+                    className={`${styles.messageField} ${checkMessage && styles.dNone}`}
                 >
                     {arr.map((item, index) => {
                         return (
