@@ -68,8 +68,8 @@ export default function Home() {
         run(70);
     }, []);
     return (
-        <>
-            <div className={styles.line} ref={progressLine}>
+        <div className="marginHorizontal">
+            <div className={`${styles.line}`} ref={progressLine}>
                 <div className={styles.unerline}></div>
 
                 <div className={styles.runner} ref={runnerRef}>
@@ -78,7 +78,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className={styles.ratingAndMessage}>
+            <div className={`marginVertivalBetweenSections ${styles.ratingAndMessage}`}>
                 <div className={styles.ratingInfoWrapper}>
                     <div
                         className={`${styles.generalStyleRatingMessage} ${styles.newMessageColumn}`}
@@ -136,7 +136,7 @@ export default function Home() {
             </div>
             {/* END ratingAndMessage */}
 
-            <div className={styles.avatarAndweightDynamics}>
+            <div className={`marginVertivalBetweenSections ${styles.avatarAndweightDynamics}`}>
                 <div className={styles.avatarWrapper}>
                     <img className={styles.avatar} src="/assets/avatar.png" />
                 </div>
@@ -201,7 +201,7 @@ export default function Home() {
             </div>
             {/* avatarAndweightDynamics */}
 
-            <div className={styles.analytics}>
+            <div className={`${styles.analytics}`}>
                 <div className={styles.analyticsWrapper}>
                     <div className={styles.analyticsRow}>
                         <div
@@ -305,7 +305,7 @@ export default function Home() {
             </div>
             {/* analytics */}
 
-            <div className={styles.activityChartAndInfo}>
+            <div className={`marginVertivalBetweenSections ${styles.activityChartAndInfo}`}>
                 <div className={styles.activityChartWrapper}>
                     <div className={styles.activityChart}>
                         <div className={styles.activityChartBg}></div>
@@ -382,6 +382,6 @@ export default function Home() {
                 </div>
             </div>
             {/* activityChartAndInfo */}
-        </>
+        </div>
     );
 }

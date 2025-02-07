@@ -11,7 +11,7 @@ function LayoutContext({ children }) {
 
     return (
         <html lang="en">
-            <body className="margin">
+            <body>
                 {showDefaultHeader && <Header />}
                 {children}
                 <Footer />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "@/app/assets/Footer.module.css";
 const Footer = () => {
     return (
-        <footer>
+        <footer className="marginVertivalBetweenSections">
             <div className={styles.footerWrapper}>
                 <Link href="/">
                     <img

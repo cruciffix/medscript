@@ -276,8 +276,8 @@ export default function FoodDiary() {
     }, []);
 
     return (
-        <>
-            <div className={styles.foodDiaryLayout}>
+        <div className="marginHorizontal">
+            <div className={`marginVertivalBetweenSections ${styles.foodDiaryLayout}`}>
                 <div className={styles.foodDiaryWrapper}>
                     {/* Создаем три одинаковых карточки завтра | обед | ужин */}
                     {meals.map((meal, indexMeal) => {
@@ -455,7 +455,7 @@ export default function FoodDiary() {
                 </div>
             </div>
 
-            <div className={styles.foodDiaryProgress}>
+            <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
                 <div className={styles.foodDiaryProgressWrapper}>
                     <div className={styles.foodDiaryProgressHeadline}>
                         <span className={styles.reslutOfDayText}>Результат за день</span>
@@ -508,6 +508,6 @@ export default function FoodDiary() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

@@ -3,8 +3,8 @@ import styles from '@/app/assets/ProgressLine.module.css';
 
 export default function Shop() {
     return (
-        <>
-            <div className={styles.filtersCurrency}>
+        <div className="marginHorizontal">
+            <div className={`marginVertivalBetweenSections ${styles.filtersCurrency}`}>
                 <div className={styles.filtersCurrencyWrapper}>
                     <div className={styles.filter}>
                         <img src='/assets/icons/filter.png'/>
@@ -18,7 +18,7 @@ export default function Shop() {
                 </div>
             </div>
 
-            <div className={styles.shop}>
+            <div className={`marginVertivalBetweenSections ${styles.shop}`}>
                 <div className={styles.shopWrapper}>
                     <div className={styles.headerShop}>
                         <h2>Инвентарь</h2>
@@ -123,7 +123,7 @@ export default function Shop() {
 
             </div>
 
-            <div className={styles.shop}>
+            <div className={`marginVertivalBetweenSections ${styles.shop}`}>
                 <div className={styles.shopWrapper}>
                     <div className={styles.headerShop}>
                         <h2>Магазин</h2>
@@ -227,6 +227,6 @@ export default function Shop() {
                 {/* shopWrapper */}
 
             </div>
-        </>
+        </div>
     )
 }
