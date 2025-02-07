@@ -80,6 +80,8 @@ export default function FoodDiary() {
     let [selectPoductBreakfast, setSelectPoductBreakfast] = useState([]);
     let [selectProductLunch, setSelectProductLunch] = useState([])
     let [selectProductDinner, setSelectProductDinner] = useState([])
+    // Все использование selectProduct.. мы используем через переменную selectProduct
+    // Ее мы используем в коде
     let selectProducts = [selectPoductBreakfast, selectProductLunch, selectProductDinner]
 
     const [showFieldSelectProductBreakfast, setShowFieldSelectProductBreakfast] = useState(true);
@@ -94,7 +96,9 @@ export default function FoodDiary() {
     
     function selectingProduct(event, index) {
         // Тут мы делаем проверку для того, чтобы дважды нельзя выбрать один и тот же продукт
-    
+
+        // Если элемент event.targetinnerHTML (пр. oatmealPorridge345) уже есть 
+        // в selectPoductBreakfast то запрещаем кликать
         if (!selectPoductBreakfast.includes(event.target.innerHTML.trim())) {
             // Меняем цвета выбраного продукта
             event.target.classList.remove(styles.notSelectItemProductText);
@@ -103,29 +107,41 @@ export default function FoodDiary() {
             // Подтягиваем каллораж вместе с блюдами
             // Берем названия продукта
             let productName = event.target.innerHTML.trim();
+
             // Выбираем завтрак / обед / ужин и подставляем название продукта productName
-            // Получаем БЖУ
+            // Получаем БЖУ выбранного продукта
             let productZBU = meals[index][productName];
             // Суммируем значение в zbu
-            
-            let ftest = mealsZBU[index]['proteins'][1]
             let sumP = Number(mealsZBU[index]['proteins'][1]) + Number(productZBU['protein']);
             let sumF = Number(mealsZBU[index]['fats'][1]) + Number(productZBU['fats']);
             let sumC =
                 Number(mealsZBU[index]['carbohydrates'][1]) + Number(productZBU['carbohydrates']);
             // Вносим sumP, sumF, sumC в mealsZBU, заставляя его менять
             setMealsZBU((prev) => {
-                let copyPrev = [...prev];
-                copyPrev[index] ={
-                    proteins: [...copyPrev[index]["proteins"], copyPrev[index]["proteins"][1] = sumP],
-                    fats: [...copyPrev[index]["fats"], copyPrev[index]["fats"][1] = sumF],
-                    carbohydrates: [...copyPrev[index]["carbohydrates"], copyPrev[index]["carbohydrates"][1] = sumC]
-                }
+                // let copyPrev = [...prev];
+                // copyPrev[index] ={
+                //     proteins: [...copyPrev[index]["proteins"], copyPrev[index]["proteins"][1] = sumP],
+                //     fats: [...copyPrev[index]["fats"], copyPrev[index]["fats"][1] = sumF],
+                //     carbohydrates: [...copyPrev[index]["carbohydrates"], copyPrev[index]["carbohydrates"][1] = sumC]
+                // }
                 
                 
-                return copyPrev
+                // return copyPrev
+                return prev.map((meal, i) => {
+                    // meal -- это объект
+
+                    if (i === index) {
+                        return {
+                            proteins: [meal.proteins[0], sumP],
+                            fats: [meal.fats[0], sumF],
+                            carbohydrates: [meal.carbohydrates[0], sumC]
+                        }
+                    } else {
+                        return meal
+                    }
+                })
             });
-            mealsZBU
+
             
             // Добавляем в массивы выбранных продуктов по логике:
             if (index == 0) {
@@ -151,17 +167,23 @@ export default function FoodDiary() {
 
     // Удаление выбранного продукта
     function deleteSelectProduct(item, idx, event) {
+
         // Отменяем цвета выбранного продкута, возвращая дефлотные
-        let elemNotSelect = document.querySelector(`#${item}`);
-        console.log(`${elemNotSelect} -- elemNotSelect, ${item} -- item`)
-        elemNotSelect.classList.remove(styles.selectItemProductText);
-        elemNotSelect.classList.add(styles.notSelectItemProductText);
+        // Выборку elemNotSelect искать в ,fieldSelectProduct 
+
+        if(typeof window !== undefined) {
+            let elemNotSelect = document.querySelector(`#${item}`);
+            if (elemNotSelect) {
+                elemNotSelect.classList.remove(styles.selectItemProductText);
+            elemNotSelect.classList.add(styles.notSelectItemProductText);
+            }
+        }
+        
 
         // Подтягиваем каллораж вместе с блюдами
         // Берем названия кликнутого продукта
         let productName = item;
         // Выбираем завтрак / обед / ужин и подставляем название продукта productName
-
         // Получаем БЖУ
         // productZBU -- еда с колоражем из общего массива meals
         let productZBU = meals[idx][productName];
@@ -170,62 +192,61 @@ export default function FoodDiary() {
         let minusP = currntNutricies['proteins'][1] - productZBU['protein'];
         let minusF = currntNutricies['fats'][1]- productZBU['fats'];
         let minusC = currntNutricies['carbohydrates'][1] - productZBU['carbohydrates'];
-        mealsZBU
         setMealsZBU((prev) => {
-            const copyPrev = [...prev];
-            copyPrev[idx] ={
-                proteins: [...copyPrev[idx]["proteins"], copyPrev[idx]["proteins"][1] = minusP],
-                fats: [...copyPrev[idx]["fats"], copyPrev[idx]["fats"][1] = minusF],
-                carbohydrates: [...copyPrev[idx]["carbohydrates"], copyPrev[idx]["carbohydrates"][1] = minusC]
-            }
-            return copyPrev
+            // const copyPrev = [...prev];
+            // copyPrev[idx] ={
+            //     proteins: [...copyPrev[idx]["proteins"], copyPrev[idx]["proteins"][1] = minusP],
+            //     fats: [...copyPrev[idx]["fats"], copyPrev[idx]["fats"][1] = minusF],
+            //     carbohydrates: [...copyPrev[idx]["carbohydrates"], copyPrev[idx]["carbohydrates"][1] = minusC]
+            // }
+            // return copyPrev
+
+            return prev.map((meal, i) => {
+                // meal -- это объект
+
+                if (i === idx) {
+                    return {
+                        proteins: [meal.proteins[0], minusP],
+                        fats: [meal.fats[0], minusF],
+                        carbohydrates: [meal.carbohydrates[0], minusC]
+                    }
+                } else {
+                    return meal
+                }
+            })
         });
         
 
         // Используем хук юзстейст
         if (idx === 0) {
             setSelectPoductBreakfast((prev) => {
-                // Проходимся по массива selectProduct, который содержит в себе
-                // выбранные продукты
-                return prev.map((elem) => {
-                    // Если текущий prev элемент из массива selectProduct совпадает
-                    // с item кликнутым элементов, то мы удаляем item из selectProduct
-                    if (elem == item) {
-                        prev.splice(prev.indexOf(item), 1);
-                        return;
-                    }
-                    return elem;
-                });
+                // Проходимся по массива selectProduct, который 
+                // содержит в себе выбранные продукты
+                // Если текущий prev элемент из массива selectProduct совпадает
+                // с item кликнутым элементов, то мы удаляем item из selectProduct
+
+                return prev.filter(elem=> elem !== item)
+  
             });  
         } else if (idx === 1) {
             setSelectProductLunch((prev) => {
-                // Проходимся по массива selectProduct, который содержит в себе
-                // выбранные продукты
-                return prev.map((elem) => {
-                    // Если текущий prev элемент из массива selectProduct совпадает
-                    // с item кликнутым элементов, то мы удаляем item из selectProduct
-                    if (elem == item) {
-                        prev.splice(prev.indexOf(item), 1);
-                        return;
-                    }
-                    return elem;
-                });
+                // Проходимся по массива selectProduct, который 
+                // содержит в себе выбранные продукты
+                // Если текущий prev элемент из массива selectProduct совпадает
+                // с item кликнутым элементов, то мы удаляем item из selectProduct
+
+                return prev.filter(elem=> elem !== item)
             });  
         } else if (idx === 2) {
             setSelectProductDinner((prev) => {
-                // Проходимся по массива selectProduct, который содержит в себе
-                // выбранные продукты
-                return prev.map((elem) => {
-                    // Если текущий prev элемент из массива selectProduct совпадает
-                    // с item кликнутым элементов, то мы удаляем item из selectProduct
-                    if (elem == item) {
-                        prev.splice(prev.indexOf(item), 1);
-                        return;
-                    }
-                    return elem;
-                });
+                // Проходимся по массива selectProduct, который 
+                // содержит в себе выбранные продукты
+                // Если текущий prev элемент из массива selectProduct совпадает
+                // с item кликнутым элементов, то мы удаляем item из selectProduct
+                return prev.filter(elem=> elem !== item)
             });  
         }
+        console.log(selectPoductBreakfast)
         
     }
 
@@ -310,13 +331,16 @@ export default function FoodDiary() {
                                                     ref={(el) =>{crossSelectProduct.current[indexMeal] = el}}/>
                                                     {meals.map((item, index) => {
                                                         // item -- завтрак / обед / ожин
-                                                        // if (index === 0) {
+                                                        // Тут мы делаем проверку: если текущий индекс indexMeal кликнутого поля совпадает с
+                                                        // индекс index (завтрак-0/обед-1/ужин-2) перебираемого объекта meals
+                                                        // то отображать только его
+                                                        // простыми словами в поле завтрак мы отображаем проудкты завтрака и тп
                                                             if (index === indexMeal) {
                                                                 return Object.keys(meals[indexMeal]).map((i, idx) => {
                                                                     return (
                                                                         <div>
                                                                             <span
-                                                                                key={`${i}_${idx}`}
+                                                                                key={`${i}_${indexMeal}_${idx}`}
                                                                                 // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
                                                                                 className={`${styles.itemProductName} ${styles.notSelectItemProductText} ${index}_mealsFlag`}
                                                                                 onClick={(event) => { selectingProduct(event, index);}}
@@ -328,8 +352,6 @@ export default function FoodDiary() {
                                                                     );
                                                                 });
                                                             }
-                                                            
-                                                        // }
                                                     })}
                                                    
                                                 </div>
@@ -344,17 +366,24 @@ export default function FoodDiary() {
                                     
                                     <div className={styles.listsSelectFood}>
 
-
+                                        {/* Рендер по выбранным продуктам */}
                                         {selectProducts.map((item, index)=> {
-
-                                            if (index === indexMeal) {
+                                            // Если текущий индекс элемента == indexMeal (т.е. завтрак обед или ужин)
+                                            // Проверка делается, чтобы не отображались ВСЕ выбранные продукты, а только
+                                            // те, которые соответствуют обеду/завтравку/ужину
+                                            // Делаем дополнительную проверку на то, что если массив item пуст
+                                            // то мы не рендерим его
+                                            if (index === indexMeal && item.length > 0) {
                                                 return (
+                                                    // item -- это массив со вложенными массивами, с индексами от 0 до 2
+                                                    // вложенные массив -- это завтрак-0/обед-1/ужин-2
+                                                    // Эти вложенные массивы как раз хронят строки, которые являются продуктами
                                                     item.map((i, idx) => {
-                                                        debugger
+                                                        // i -- является как раз таки тем самым выбранным элементом (проудктом)
                                                         return (
                                                             <div
                                                                 className={`${styles.listFoodElem} 0_${i}`}
-                                                                key={`${i}_${idx}`}
+                                                                key={`${i}_${indexMeal}_${idx}`}
                                                             >
                                                                 <img
                                                                     src='/assets/icons/cross.png'
@@ -369,6 +398,8 @@ export default function FoodDiary() {
                                                         );
                                                     })
                                                 )
+                                            } else {
+                                                return null
                                             }
                                           
                                             
@@ -399,7 +430,7 @@ export default function FoodDiary() {
                                                                     <span className={styles.nutrientName}>
                                                                         {item[key][0]}{' '}(г)
                                                                     </span>
-                                                                    <span lassName={styles.nutrientWeight}>
+                                                                    <span className={styles.nutrientWeight}>
                                                                         {item[key][1]}
                                                                     </span>
                                                                 </div>
