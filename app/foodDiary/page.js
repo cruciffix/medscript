@@ -75,7 +75,7 @@ export default function FoodDiary() {
 
     // selectIndexMeal = порядкойвый номер приемя пищи. Используем чтобы отображать
     // Еду в заивисмоти от приема
-    let selectIndexMeal = null
+    let selectIndexMeal = null;
 
     // Это массив выбранных продуктов
     let [selectPoductBreakfast, setSelectPoductBreakfast] = useState([]);
