@@ -1,7 +1,8 @@
 'use client';
 import styles from '@/app/assets/ProgressLine.module.css';
-import HeaderAny from '../components/AnyHeader';
+
 import { useState } from 'react';
+import HeaderAnother from '../components/HeaderAnother';
 
 export default function Shop() {
     let [itemPageShop, setItemPageShop] = useState([
@@ -48,7 +49,7 @@ export default function Shop() {
     return (
         
         <div className="marginHorizontal">
-            <HeaderAny h1={"Магазин"}/>
+            <HeaderAnother h1={"Магазин"}/>
             <>
                 <div className={`${styles.filtersCurrency}`}>
                     <div className={styles.filtersCurrencyWrapper}>
