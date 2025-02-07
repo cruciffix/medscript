@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/app/assets/ProgressLine.module.css';
-import HeaderAny from '../components/headerAny';
+import HeaderAny from '../components/AnyHeader';
 import { useState } from 'react';
 
 export default function Shop() {

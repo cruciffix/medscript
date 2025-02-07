@@ -3,7 +3,7 @@ import styles from '@/app/assets/ProgressLine.module.css';
 import { checkIsOnDemandRevalidate } from 'next/dist/server/api-utils';
 import { useEffect, useRef, useState } from 'react';
 import CrossSVG from '../components/icons/CrossSVG';
-import HeaderAny from '../components/headerAny';
+import HeaderAny from '../components/AnyHeader';
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
     // Под 1 индексом -- обед
@@ -278,7 +278,7 @@ export default function FoodDiary() {
 
     return (
         <div className="marginHorizontal">
-            <HeaderAny h1={"Пищевой дневник"}/>
+            <HeaderAny />
             
                 <div className={` ${styles.foodDiaryLayout}`}>
                     <div className={styles.foodDiaryWrapper}>
