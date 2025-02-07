@@ -71,7 +71,6 @@
 .ratingAndMessage {
     position: relative;
 
-    padding: 6px 18px 18px 18px;
 
     /* align-items: flex-start; */
 
@@ -466,15 +465,15 @@
 }
 
 .columnSearch {
-    width: 65%;
+    width: 60%;
 }
 
 .columnData {
-    width: 20%;
+    width: 25%;
 }
 
 .columnDataHeadline {
-    margin-top: 0;
+    margin-bottom: 10px;
 
     font-weight: 400;
     font-size: 20px;
@@ -590,7 +589,9 @@
 .inputSearch {
     width: 80%;
 
-    color: #000;
+    color: #91D88A;
+
+    font-size: 15px;
 
     border: none;
     outline: none;
@@ -631,9 +632,13 @@
 
 /* .columnData */
 
+
 .nutrients {
+    height: 100%;
+
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 
     margin-bottom: 10px;
 }
@@ -643,12 +648,12 @@
 
     color: #3bbc2d;
     font-weight: 700;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .nutrientWeight {
     color: #3bbc2d;
-    font-size: 15px;
+    font-size: 18px;
 
 }
 
@@ -733,8 +738,6 @@
     justify-content: center;
     align-items: center;
 
-    margin-top: 20px;
-
     padding: 12px 20px;
     background-color: #fff;
 
@@ -755,13 +758,17 @@
     font-size: 14px;
     color: #3BBC2D;
 }
-
-.shopItemRow {
+.shopItemRow,
+.inventoryItemRow {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
     margin-top: 15px;
+}
+
+.shopItemRow {
+    justify-content: space-between;
 }
 
 .itemImg {
@@ -779,21 +786,16 @@
 }
 
 
-
 .itemPrice {
     display: flex;
     align-items: center;
 }
 
-.itemPrice img {
-   
-    width: 30px;
-
-    margin-right: 10px;
-}
 
 .itemPrice span {
-    font-size: 21px;
+    margin-left: 15px;
+
+    font-size: 18px;
     font-weight: 600;
     color: #3BBC2D;
 }

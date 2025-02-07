@@ -3,6 +3,7 @@ import styles from '@/app/assets/ProgressLine.module.css';
 import { checkIsOnDemandRevalidate } from 'next/dist/server/api-utils';
 import { useEffect, useRef, useState } from 'react';
 import CrossSVG from '../components/icons/CrossSVG';
+import HeaderAny from '../components/headerAny';
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
     // Под 1 индексом -- обед
@@ -277,237 +278,239 @@ export default function FoodDiary() {
 
     return (
         <div className="marginHorizontal">
-            <div className={`marginVertivalBetweenSections ${styles.foodDiaryLayout}`}>
-                <div className={styles.foodDiaryWrapper}>
-                    {/* Создаем три одинаковых карточки завтра | обед | ужин */}
-                    {meals.map((meal, indexMeal) => {
-                        return (
-                            <div className={styles.foodDiaryElem} key={`_${indexMeal}`}>
-                                <div className={styles.columnSearch}>
-                                    <div
-                                        className={
-                                            styles.foodDiaryHeaderWrapper
-                                        }
-                                    >
-                                        <h2 className={styles.foodDiaryHeader}>
-                                            {indexMeal === 0
-                                                ? 'Завтрак'
-                                                : indexMeal === 1
-                                                ? 'Обед'
-                                                : 'Ужин'}
-                                        </h2>
-                                        <img
-                                            className={styles.foodDiaryWhat}
-                                            src='/assets/icons/what.png'
-                                        />
-                                    </div>
-
-                                    <div className={styles.wrapperSearch}>
-                                        <div className={styles.writingSearch}>
-                                            <img src='/assets/icons/search.png' />
-
-                                            <div
-                                                className={`${styles.inputSearch} ${indexMeal}_mealsFlag`}
-                                                ref={(el) =>{inputSelectProduct.current[indexMeal] = el}}
-                                                
-                                            >
-                                                <span>Выбирите продукт</span>
-                                            </div>
-
-                                            {/* Открываем выпадающий список в зависимоти от приема пищи */}
-                                            <div
-                                                className={`${styles.fieldSelectProduct }
-                                                
-                                                ${indexMeal === 0 && showFieldSelectProductBreakfast && styles.dNone}
-                                                ${indexMeal === 1 && showFieldSelectProductLunch && styles.dNone}
-                                                ${indexMeal === 2 && showFieldSelectProductDinner && styles.dNone}`}
-                                            >
-                                                <div className={ styles.listProductWrapper} >
-                                                    {/* Здесь мы проходим по ключам объекта meals, в которых */}
-                                                    {/* Записаны название продуктов доступных для определенного приема пищи, */}
-                                                    
-                                                    <CrossSVG width={16} height={16}
-                                                    className={styles.closeListProductWrapper}
-                                                    ref={(el) =>{crossSelectProduct.current[indexMeal] = el}}/>
-                                                    {meals.map((item, index) => {
-                                                        // item -- завтрак / обед / ожин
-                                                        // Тут мы делаем проверку: если текущий индекс indexMeal кликнутого поля совпадает с
-                                                        // индекс index (завтрак-0/обед-1/ужин-2) перебираемого объекта meals
-                                                        // то отображать только его
-                                                        // простыми словами в поле завтрак мы отображаем проудкты завтрака и тп
-                                                            if (index === indexMeal) {
-                                                                return Object.keys(meals[indexMeal]).map((i, idx) => {
-                                                                    return (
-                                                                        <div>
-                                                                            <span
-                                                                                key={`${i}_${indexMeal}_${idx}`}
-                                                                                // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
-                                                                                className={`${styles.itemProductName} ${styles.notSelectItemProductText} ${index}_mealsFlag`}
-                                                                                onClick={(event) => { selectingProduct(event, index);}}
-                                                                                id={i}
-                                                                            >
-                                                                                {i}
-                                                                            </span>
-                                                                        </div>
-                                                                    );
-                                                                });
-                                                            }
-                                                    })}
-                                                   
-                                                </div>
-                                            </div>
-                                            {/* fieldSelectProduct */}
-                                        </div>
-
-                                        <div className={styles.photoSearch}>
-                                            <img src='/assets/icons/photo.png' />
-                                        </div>
-                                    </div>
-                                    
-                                    <div className={styles.listsSelectFood}>
-
-                                        {/* Рендер по выбранным продуктам */}
-                                        {selectProducts.map((item, index)=> {
-                                            // Если текущий индекс элемента == indexMeal (т.е. завтрак обед или ужин)
-                                            // Проверка делается, чтобы не отображались ВСЕ выбранные продукты, а только
-                                            // те, которые соответствуют обеду/завтравку/ужину
-                                            // Делаем дополнительную проверку на то, что если массив item пуст
-                                            // то мы не рендерим его
-                                            if (index === indexMeal && item.length > 0) {
-                                                return (
-                                                    // item -- это массив со вложенными массивами, с индексами от 0 до 2
-                                                    // вложенные массив -- это завтрак-0/обед-1/ужин-2
-                                                    // Эти вложенные массивы как раз хронят строки, которые являются продуктами
-                                                    item.map((i, idx) => {
-                                                        // i -- является как раз таки тем самым выбранным элементом (проудктом)
-                                                        return (
-                                                            <div
-                                                                className={`${styles.listFoodElem} 0_${i}`}
-                                                                key={`${i}_${indexMeal}_${idx}`}
-                                                            >
-                                                                <img
-                                                                    src='/assets/icons/cross.png'
-                                                                    className={styles.foodCross }
-                                                                    onClick={(event) => deleteSelectProduct(i, index, event)}
-                                                                />
+            <HeaderAny h1={"Пищевой дневник"}/>
             
-                                                                <span className={styles.nameFood}>
-                                                                    {i}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                    })
-                                                )
-                                            } else {
-                                                return null
+                <div className={` ${styles.foodDiaryLayout}`}>
+                    <div className={styles.foodDiaryWrapper}>
+                        {/* Создаем три одинаковых карточки завтра | обед | ужин */}
+                        {meals.map((meal, indexMeal) => {
+                            return (
+                                <div className={styles.foodDiaryElem} style={{marginTop: indexMeal == 0 && 0 + "px"}} key={`_${indexMeal}`}>
+                                    <div className={styles.columnSearch}>
+                                        <div
+                                            className={
+                                                styles.foodDiaryHeaderWrapper
                                             }
-                                          
-                                            
-                                                
-                                            
-                                        })}
+                                        >
+                                            <h2 className={styles.foodDiaryHeader}>
+                                                {indexMeal === 0
+                                                    ? 'Завтрак'
+                                                    : indexMeal === 1
+                                                    ? 'Обед'
+                                                    : 'Ужин'}
+                                            </h2>
+                                            <img
+                                                className={styles.foodDiaryWhat}
+                                                src='/assets/icons/what.png'
+                                            />
+                                        </div>
+
+                                        <div className={styles.wrapperSearch}>
+                                            <div className={styles.writingSearch}>
+                                                <img src='/assets/icons/search.png' />
+
+                                                <div
+                                                    className={`${styles.inputSearch} ${indexMeal}_mealsFlag`}
+                                                    ref={(el) =>{inputSelectProduct.current[indexMeal] = el}}
+                                                    
+                                                >
+                                                    <span>Выбирите продукт</span>
+                                                </div>
+
+                                                {/* Открываем выпадающий список в зависимоти от приема пищи */}
+                                                <div
+                                                    className={`${styles.fieldSelectProduct }
+                                                    
+                                                    ${indexMeal === 0 && showFieldSelectProductBreakfast && styles.dNone}
+                                                    ${indexMeal === 1 && showFieldSelectProductLunch && styles.dNone}
+                                                    ${indexMeal === 2 && showFieldSelectProductDinner && styles.dNone}`}
+                                                >
+                                                    <div className={ styles.listProductWrapper} >
+                                                        {/* Здесь мы проходим по ключам объекта meals, в которых */}
+                                                        {/* Записаны название продуктов доступных для определенного приема пищи, */}
+                                                        
+                                                        <CrossSVG width={16} height={16}
+                                                        className={styles.closeListProductWrapper}
+                                                        ref={(el) =>{crossSelectProduct.current[indexMeal] = el}}/>
+                                                        {meals.map((item, index) => {
+                                                            // item -- завтрак / обед / ожин
+                                                            // Тут мы делаем проверку: если текущий индекс indexMeal кликнутого поля совпадает с
+                                                            // индекс index (завтрак-0/обед-1/ужин-2) перебираемого объекта meals
+                                                            // то отображать только его
+                                                            // простыми словами в поле завтрак мы отображаем проудкты завтрака и тп
+                                                                if (index === indexMeal) {
+                                                                    return Object.keys(meals[indexMeal]).map((i, idx) => {
+                                                                        return (
+                                                                            <div>
+                                                                                <span
+                                                                                    key={`${i}_${indexMeal}_${idx}`}
+                                                                                    // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
+                                                                                    className={`${styles.itemProductName} ${styles.notSelectItemProductText} ${index}_mealsFlag`}
+                                                                                    onClick={(event) => { selectingProduct(event, index);}}
+                                                                                    id={i}
+                                                                                >
+                                                                                    {i}
+                                                                                </span>
+                                                                            </div>
+                                                                        );
+                                                                    });
+                                                                }
+                                                        })}
+                                                    
+                                                    </div>
+                                                </div>
+                                                {/* fieldSelectProduct */}
+                                            </div>
+
+                                            <div className={styles.photoSearch}>
+                                                <img src='/assets/icons/photo.png' />
+                                            </div>
+                                        </div>
                                         
-                                    </div>
-                                </div>
-                                {/* columnSearch */}
+                                        <div className={styles.listsSelectFood}>
 
-                                <div className={styles.columnData}>
-                                    <h3 className={styles.columnDataHeadline}>
-                                        23.11.24
-                                    </h3>
-
-                                    <> {}
-                                        {mealsZBU.map((item, index) => {
-
-                                            if (indexMeal === index) {
-                                                return (
-                                                    <div key={index}>
-                                                        {Object.keys(item).map((key) => (
+                                            {/* Рендер по выбранным продуктам */}
+                                            {selectProducts.map((item, index)=> {
+                                                // Если текущий индекс элемента == indexMeal (т.е. завтрак обед или ужин)
+                                                // Проверка делается, чтобы не отображались ВСЕ выбранные продукты, а только
+                                                // те, которые соответствуют обеду/завтравку/ужину
+                                                // Делаем дополнительную проверку на то, что если массив item пуст
+                                                // то мы не рендерим его
+                                                if (index === indexMeal && item.length > 0) {
+                                                    return (
+                                                        // item -- это массив со вложенными массивами, с индексами от 0 до 2
+                                                        // вложенные массив -- это завтрак-0/обед-1/ужин-2
+                                                        // Эти вложенные массивы как раз хронят строки, которые являются продуктами
+                                                        item.map((i, idx) => {
+                                                            // i -- является как раз таки тем самым выбранным элементом (проудктом)
+                                                            return (
                                                                 <div
-                                                                    className={styles.nutrients}
-                                                                    key={key}
-                                                                    >
-                                                                    <span className={styles.nutrientName}>
-                                                                        {item[key][0]}{' '}(г)
-                                                                    </span>
-                                                                    <span className={styles.nutrientWeight}>
-                                                                        {item[key][1]}
+                                                                    className={`${styles.listFoodElem} 0_${i}`}
+                                                                    key={`${i}_${indexMeal}_${idx}`}
+                                                                >
+                                                                    <img
+                                                                        src='/assets/icons/cross.png'
+                                                                        className={styles.foodCross }
+                                                                        onClick={(event) => deleteSelectProduct(i, index, event)}
+                                                                    />
+                
+                                                                    <span className={styles.nameFood}>
+                                                                        {i}
                                                                     </span>
                                                                 </div>
-                                                            ),
-                                                        )}
-                                                    </div>
-                                                );
-                                            }
+                                                            );
+                                                        })
+                                                    )
+                                                } else {
+                                                    return null
+                                                }
                                             
-                                        })}
-                                    </>
+                                                
+                                                    
+                                                
+                                            })}
+                                            
+                                        </div>
+                                    </div>
+                                    {/* columnSearch */}
 
-                                    {/* nutrients */}
+                                    <div className={styles.columnData}>
+                                        <h3 className={styles.columnDataHeadline}>
+                                            23.11.24
+                                        </h3>
+
+                                        <div className={styles.nutrientsWrapper}> 
+                                            {mealsZBU.map((item, index) => {
+
+                                                if (indexMeal === index) {
+                                                    return (
+                                                        <div key={index}>
+                                                            {Object.keys(item).map((key) => (
+                                                                    <div
+                                                                        className={styles.nutrients}
+                                                                        key={key}
+                                                                        >
+                                                                        <span className={styles.nutrientName}>
+                                                                            {item[key][0]}{' '}(г)
+                                                                        </span>
+                                                                        <span className={styles.nutrientWeight}>
+                                                                            {item[key][1]}
+                                                                        </span>
+                                                                    </div>
+                                                                ),
+                                                            )}
+                                                        </div>
+                                                    );
+                                                }
+                                                
+                                            })}
+                                        </div>
+
+                                        {/* nutrients */}
+                                    </div>
+                                    {/* columnData */}
                                 </div>
-                                {/* columnData */}
-                            </div>
-                        );
-                        {
-                            /* foodDiaryElem */
-                        }
-                    })}
-                </div>
-            </div>
-
-            <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
-                <div className={styles.foodDiaryProgressWrapper}>
-                    <div className={styles.foodDiaryProgressHeadline}>
-                        <span className={styles.reslutOfDayText}>Результат за день</span>
-                        <span className={styles.reslutOfDayCount}>6 / 10</span>
-                    </div>
-                    {/* foodDiaryProgressHeadline */}
-
-                    <div className={styles.resultBZUWrapper}>
-                        <div className={styles.resultBZURow}>
-                            <div className={styles.resultBZUImg}>
-                                <img src='/assets/icons/chicken.png'/>
-                            </div>
-                            <div className={styles.resultBZUName}>
-                                <span>Белки</span>
-                            </div>
-                            <div className={styles.resultBZUCount}>
-                                <span>22</span>
-                            </div>
-
-                        </div>
-                        {/* resultBZURow */}
-
-                        <div className={styles.resultBZURow}>
-                            <div className={styles.resultBZUImg}>
-                                <img src='/assets/icons/pear.png'/>
-                            </div>
-                            <div className={styles.resultBZUName}>
-                                <span>Жиры</span>
-                            </div>
-                            <div className={styles.resultBZUCount}>
-                                <span>22</span>
-                            </div>
-
-                        </div>
-                        {/* resultBZURow */}
-
-                        <div className={styles.resultBZURow}>
-                            <div className={styles.resultBZUImg}>
-                                <img src='/assets/icons/vegetables.png'/>
-                            </div>
-                            <div className={styles.resultBZUName}>
-                                <span>Углеводы</span>
-                            </div>
-                            <div className={styles.resultBZUCount}>
-                                <span>22</span>
-                            </div>
-
-                        </div>
-                        {/* resultBZURow */}
+                            );
+                            {
+                                /* foodDiaryElem */
+                            }
+                        })}
                     </div>
                 </div>
-            </div>
+
+                <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
+                    <div className={styles.foodDiaryProgressWrapper}>
+                        <div className={styles.foodDiaryProgressHeadline}>
+                            <span className={styles.reslutOfDayText}>Результат за день</span>
+                            <span className={styles.reslutOfDayCount}>6 / 10</span>
+                        </div>
+                        {/* foodDiaryProgressHeadline */}
+
+                        <div className={styles.resultBZUWrapper}>
+                            <div className={styles.resultBZURow}>
+                                <div className={styles.resultBZUImg}>
+                                    <img src='/assets/icons/chicken.png'/>
+                                </div>
+                                <div className={styles.resultBZUName}>
+                                    <span>Белки</span>
+                                </div>
+                                <div className={styles.resultBZUCount}>
+                                    <span>22</span>
+                                </div>
+
+                            </div>
+                            {/* resultBZURow */}
+
+                            <div className={styles.resultBZURow}>
+                                <div className={styles.resultBZUImg}>
+                                    <img src='/assets/icons/pear.png'/>
+                                </div>
+                                <div className={styles.resultBZUName}>
+                                    <span>Жиры</span>
+                                </div>
+                                <div className={styles.resultBZUCount}>
+                                    <span>22</span>
+                                </div>
+
+                            </div>
+                            {/* resultBZURow */}
+
+                            <div className={styles.resultBZURow}>
+                                <div className={styles.resultBZUImg}>
+                                    <img src='/assets/icons/vegetables.png'/>
+                                </div>
+                                <div className={styles.resultBZUName}>
+                                    <span>Углеводы</span>
+                                </div>
+                                <div className={styles.resultBZUCount}>
+                                    <span>22</span>
+                                </div>
+
+                            </div>
+                            {/* resultBZURow */}
+                        </div>
+                    </div>
+                </div>
         </div>
     );
 }

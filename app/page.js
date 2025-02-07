@@ -5,6 +5,7 @@ import Runner from "./components/icons/Runner";
 import { useEffect, useState, useRef } from "react";
 import Cup from "./components/icons/Cup";
 import Star from "./components/icons/Star";
+import Header from "./components/Header";
 
 export default function Home() {
     const runnerRef = useRef(null);
@@ -69,6 +70,8 @@ export default function Home() {
     }, []);
     return (
         <div className="marginHorizontal">
+            <Header />
+
             <div className={`${styles.line}`} ref={progressLine}>
                 <div className={styles.unerline}></div>
 
@@ -78,7 +81,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className={`marginVertivalBetweenSections ${styles.ratingAndMessage}`}>
+            <div className={`marginVertivalBetweenSections paddingInnerBlock ${styles.ratingAndMessage}`}>
                 <div className={styles.ratingInfoWrapper}>
                     <div
                         className={`${styles.generalStyleRatingMessage} ${styles.newMessageColumn}`}
@@ -136,7 +139,7 @@ export default function Home() {
             </div>
             {/* END ratingAndMessage */}
 
-            <div className={`marginVertivalBetweenSections ${styles.avatarAndweightDynamics}`}>
+            <div className={`marginVertivalBetweenSections  ${styles.avatarAndweightDynamics}`}>
                 <div className={styles.avatarWrapper}>
                     <img className={styles.avatar} src="/assets/avatar.png" />
                 </div>
