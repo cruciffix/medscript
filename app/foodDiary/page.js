@@ -2,7 +2,7 @@
 import styles from '@/app/assets/ProgressLine.module.css';
 import { checkIsOnDemandRevalidate } from 'next/dist/server/api-utils';
 import { useEffect, useRef, useState } from 'react';
-import CrossSVG from '../components/icons/CrossSVG';
+import CrossIcon from '../components/icons/CrossIcon';
 import HeaderAnother from '../components/HeaderAnother';
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
@@ -328,8 +328,7 @@ export default function FoodDiary() {
                                                     <div className={ styles.listProductWrapper} >
                                                         {/* Здесь мы проходим по ключам объекта meals, в которых */}
                                                         {/* Записаны название продуктов доступных для определенного приема пищи, */}
-                                                        
-                                                        <CrossSVG width={16} height={16}
+                                                        <CrossIcon width={16} height={16}
                                                         className={styles.closeListProductWrapper}
                                                         ref={(el) =>{crossSelectProduct.current[indexMeal] = el}}/>
                                                         {meals.map((item, index) => {
