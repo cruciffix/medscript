@@ -4,6 +4,8 @@ import { checkIsOnDemandRevalidate } from 'next/dist/server/api-utils';
 import { useEffect, useRef, useState } from 'react';
 import CrossIcon from '../components/icons/CrossIcon';
 import HeaderAnother from '../components/HeaderAnother';
+import HeadlineFood from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/HeadlineFood';
+import ListProductWrapper from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/ListProductWrapper';
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
     // Под 1 индексом -- обед
@@ -285,25 +287,14 @@ export default function FoodDiary() {
                         {/* Создаем три одинаковых карточки завтра | обед | ужин */}
                         {meals.map((meal, indexMeal) => {
                             return (
-                                <div className={styles.foodDiaryElem} style={{marginTop: indexMeal == 0 && 0 + "px"}} key={`_${indexMeal}`}>
+                                <div 
+                                    className={styles.foodDiaryElem} 
+                                    style={{marginTop: indexMeal == 0 && 0 + "px"}} 
+                                    key={`_${indexMeal}`}
+                                >
                                     <div className={styles.columnSearch}>
-                                        <div
-                                            className={
-                                                styles.foodDiaryHeaderWrapper
-                                            }
-                                        >
-                                            <h2 className={styles.foodDiaryHeader}>
-                                                {indexMeal === 0
-                                                    ? 'Завтрак'
-                                                    : indexMeal === 1
-                                                    ? 'Обед'
-                                                    : 'Ужин'}
-                                            </h2>
-                                            <img
-                                                className={styles.foodDiaryWhat}
-                                                src='/assets/icons/what.png'
-                                            />
-                                        </div>
+                                        <HeadlineFood indexMeal={indexMeal}/>
+                                        
 
                                         <div className={styles.wrapperSearch}>
                                             <div className={styles.writingSearch}>
@@ -325,6 +316,17 @@ export default function FoodDiary() {
                                                     ${indexMeal === 1 && showFieldSelectProductLunch && styles.dNone}
                                                     ${indexMeal === 2 && showFieldSelectProductDinner && styles.dNone}`}
                                                 >
+                                                    <ListProductWrapper 
+                                                        meals={meals}
+                                                        mealsZBU={mealsZBU}
+                                                        crossSelectProduct={crossSelectProduct}
+                                                        indexMeal={indexMeal}
+                                                        selectPoductBreakfast={selectPoductBreakfast}
+                                                        setSelectPoductBreakfast={setSelectPoductBreakfast}
+                                                        setSelectProductLunch={setSelectProductLunch}
+                                                        setSelectProductDinner={setSelectProductDinner}
+                                                        setMealsZBU={setMealsZBU}
+                                                    />
                                                     <div className={ styles.listProductWrapper} >
                                                         {/* Здесь мы проходим по ключам объекта meals, в которых */}
                                                         {/* Записаны название продуктов доступных для определенного приема пищи, */}

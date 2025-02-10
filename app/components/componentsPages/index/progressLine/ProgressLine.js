@@ -28,7 +28,7 @@ export default function ProgressLine () {
             }
         }
 
-        run(56)
+        run(100)
     }, [])
     return (
         <div className={`${styles.line}`} ref={progressLine}>
