@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/app/assets/ProgressLine.module.css";
 
 import { useEffect, useRef } from "react";

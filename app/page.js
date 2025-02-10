@@ -47,7 +47,9 @@ export default function Home() {
 
             <div className={`marginVertivalBetweenSections paddingInnerBlock ${styles.ratingAndMessage}`}>
                 <div className={styles.ratingInfoWrapper}>
-                    <CheckMessageComponent 
+                    <CheckMessageComponent
+                        checkMessage={checkMessage}
+                        isCheckMessage={isCheckMessage}
                         arr={arr}/>
 
                     <RatingComponent />

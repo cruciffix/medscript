@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import Runner from "../../../icons/RunnerIcon";
 import styles from "@/app/assets/ProgressLine.module.css";
