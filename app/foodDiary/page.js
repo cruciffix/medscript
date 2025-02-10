@@ -327,38 +327,7 @@ export default function FoodDiary() {
                                                         setSelectProductDinner={setSelectProductDinner}
                                                         setMealsZBU={setMealsZBU}
                                                     />
-                                                    <div className={ styles.listProductWrapper} >
-                                                        {/* Здесь мы проходим по ключам объекта meals, в которых */}
-                                                        {/* Записаны название продуктов доступных для определенного приема пищи, */}
-                                                        <CrossIcon width={16} height={16}
-                                                        className={styles.closeListProductWrapper}
-                                                        ref={(el) =>{crossSelectProduct.current[indexMeal] = el}}/>
-                                                        {meals.map((item, index) => {
-                                                            // item -- завтрак / обед / ожин
-                                                            // Тут мы делаем проверку: если текущий индекс indexMeal кликнутого поля совпадает с
-                                                            // индекс index (завтрак-0/обед-1/ужин-2) перебираемого объекта meals
-                                                            // то отображать только его
-                                                            // простыми словами в поле завтрак мы отображаем проудкты завтрака и тп
-                                                                if (index === indexMeal) {
-                                                                    return Object.keys(meals[indexMeal]).map((i, idx) => {
-                                                                        return (
-                                                                            <div>
-                                                                                <span
-                                                                                    key={`${i}_${indexMeal}_${idx}`}
-                                                                                    // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
-                                                                                    className={`${styles.itemProductName} ${styles.notSelectItemProductText} ${index}_mealsFlag`}
-                                                                                    onClick={(event) => { selectingProduct(event, index);}}
-                                                                                    id={i}
-                                                                                >
-                                                                                    {i}
-                                                                                </span>
-                                                                            </div>
-                                                                        );
-                                                                    });
-                                                                }
-                                                        })}
                                                     
-                                                    </div>
                                                 </div>
                                                 {/* fieldSelectProduct */}
                                             </div>
