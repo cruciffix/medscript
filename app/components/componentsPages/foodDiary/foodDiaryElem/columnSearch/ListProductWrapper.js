@@ -2,16 +2,17 @@ import styles from '@/app/assets/ProgressLine.module.css';
 import CrossIcon from '@/app/components/icons/CrossIcon';
 
 export default function ListProductWrapper({meals, crossSelectProduct, 
-    indexMeal, selectPoductBreakfast, setSelectPoductBreakfast,
+    indexMeal, selectPoductBreakfast, selectProductDinner, selectProductLunch, setSelectPoductBreakfast,
      setSelectProductLunch,
      setSelectProductDinner, 
+     selectProducts,
     mealsZBU, setMealsZBU  }) {
-    function selectingProduct(event, index) {
+    function selectingProduct(event, index, indexMeal) {
         // Тут мы делаем проверку для того, чтобы дважды нельзя выбрать один и тот же продукт
-
         // Если элемент event.targetinnerHTML (пр. oatmealPorridge345) уже есть 
         // в selectPoductBreakfast то запрещаем кликать
-        if (!selectPoductBreakfast.includes(event.target.innerHTML.trim())) {
+        if (!selectProducts[indexMeal].includes(event.target.innerHTML.trim())) {
+            debugger
             // Меняем цвета выбраного продукта
             event.target.classList.remove(styles.notSelectItemProductText);
             event.target.classList.add(styles.selectItemProductText);
@@ -99,7 +100,7 @@ export default function ListProductWrapper({meals, crossSelectProduct,
                                         key={`${i}_${indexMeal}_${idx}`}
                                         // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
                                         className={`${styles.itemProductName} ${styles.notSelectItemProductText} ${index}_mealsFlag`}
-                                        onClick={(event) => { selectingProduct(event, index);}}
+                                        onClick={(event) => { selectingProduct(event, index, indexMeal)}}
                                         id={i}
                                     >
                                         {i}
