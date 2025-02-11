@@ -6,6 +6,9 @@ import CrossIcon from '../components/icons/CrossIcon';
 import HeaderAnother from '../components/HeaderAnother';
 import HeadlineFood from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/HeadlineFood';
 import ListProductWrapper from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/ListProductWrapper';
+import PhotoSearch from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/PhotoSearch';
+import ListsSelectFoodComponent from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/NotListsSelectFood';
+
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
     // Под 1 индексом -- обед
@@ -263,55 +266,19 @@ export default function FoodDiary() {
                                                 {/* fieldSelectProduct */}
                                             </div>
 
-                                            <div className={styles.photoSearch}>
-                                                <img src='/assets/icons/photo.png' />
-                                            </div>
+                                            <PhotoSearch />
                                         </div>
+                                        <ListsSelectFoodComponent 
+                                            selectProducts={selectProducts}
+                                            indexMeal={indexMeal}
+                                            meals={meals}
+                                            mealsZBU={mealsZBU}
+                                            setMealsZBU={setMealsZBU}
+                                            setSelectPoductBreakfast={setSelectPoductBreakfast}
+                                            setSelectProductLunch={setSelectProductLunch}
+                                            setSelectProductDinner={setSelectProductDinner}
+                                        />
                                         
-                                        <div className={styles.listsSelectFood}>
-
-                                            {/* Рендер по выбранным продуктам */}
-                                            {selectProducts.map((item, index)=> {
-                                                // Если текущий индекс элемента == indexMeal (т.е. завтрак обед или ужин)
-                                                // Проверка делается, чтобы не отображались ВСЕ выбранные продукты, а только
-                                                // те, которые соответствуют обеду/завтравку/ужину
-                                                // Делаем дополнительную проверку на то, что если массив item пуст
-                                                // то мы не рендерим его
-                                                if (index === indexMeal && item.length > 0) {
-                                                    return (
-                                                        // item -- это массив со вложенными массивами, с индексами от 0 до 2
-                                                        // вложенные массив -- это завтрак-0/обед-1/ужин-2
-                                                        // Эти вложенные массивы как раз хронят строки, которые являются продуктами
-                                                        item.map((i, idx) => {
-                                                            // i -- является как раз таки тем самым выбранным элементом (проудктом)
-                                                            return (
-                                                                <div
-                                                                    className={`${styles.listFoodElem} 0_${i}`}
-                                                                    key={`${i}_${indexMeal}_${idx}`}
-                                                                >
-                                                                    <img
-                                                                        src='/assets/icons/cross.png'
-                                                                        className={styles.foodCross }
-                                                                        onClick={(event) => deleteSelectProduct(i, index, event)}
-                                                                    />
-                
-                                                                    <span className={styles.nameFood}>
-                                                                        {i}
-                                                                    </span>
-                                                                </div>
-                                                            );
-                                                        })
-                                                    )
-                                                } else {
-                                                    return null
-                                                }
-                                            
-                                                
-                                                    
-                                                
-                                            })}
-                                            
-                                        </div>
                                     </div>
                                     {/* columnSearch */}
 

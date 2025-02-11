@@ -12,7 +12,6 @@ export default function ListProductWrapper({meals, crossSelectProduct,
         // Если элемент event.targetinnerHTML (пр. oatmealPorridge345) уже есть 
         // в selectPoductBreakfast то запрещаем кликать
         if (!selectProducts[indexMeal].includes(event.target.innerHTML.trim())) {
-            debugger
             // Меняем цвета выбраного продукта
             event.target.classList.remove(styles.notSelectItemProductText);
             event.target.classList.add(styles.selectItemProductText);
