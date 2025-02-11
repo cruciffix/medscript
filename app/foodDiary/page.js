@@ -8,6 +8,11 @@ import HeadlineFood from '../components/componentsPages/foodDiary/foodDiaryElem/
 import ListProductWrapper from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/ListProductWrapper';
 import PhotoSearch from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/PhotoSearch';
 import ListsSelectFoodComponent from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/NotListsSelectFood';
+import DataNowComponent from '../components/componentsPages/foodDiary/foodDiaryElem/columnData/DataNowComponent';
+import NutrientMetric from '../components/componentsPages/foodDiary/foodDiaryElem/columnData/NutrientMetric';
+import IconAndSelect from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/IconAndSelect';
+import ProgressHeadline from '../components/componentsPages/foodDiary/foodDiaryProgress/ProgressHeadline';
+import ResultBZU from '../components/componentsPages/foodDiary/foodDiaryProgress/ResultBZU';
 
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
@@ -101,89 +106,7 @@ export default function FoodDiary() {
     const itemsProduct = useRef([]);
  
 
-    // Удаление выбранного продукта
-    function deleteSelectProduct(item, idx, event) {
-
-        // Отменяем цвета выбранного продкута, возвращая дефлотные
-        // Выборку elemNotSelect искать в ,fieldSelectProduct 
-
-        if(typeof window !== undefined) {
-            let elemNotSelect = document.querySelector(`#${item}`);
-            if (elemNotSelect) {
-                elemNotSelect.classList.remove(styles.selectItemProductText);
-            elemNotSelect.classList.add(styles.notSelectItemProductText);
-            }
-        }
-        
-
-        // Подтягиваем каллораж вместе с блюдами
-        // Берем названия кликнутого продукта
-        let productName = item;
-        // Выбираем завтрак / обед / ужин и подставляем название продукта productName
-        // Получаем БЖУ
-        // productZBU -- еда с колоражем из общего массива meals
-        let productZBU = meals[idx][productName];
-        // currntNutricies-- текущие нутриэлементы
-        let currntNutricies = mealsZBU[idx];
-        let minusP = currntNutricies['proteins'][1] - productZBU['protein'];
-        let minusF = currntNutricies['fats'][1]- productZBU['fats'];
-        let minusC = currntNutricies['carbohydrates'][1] - productZBU['carbohydrates'];
-        setMealsZBU((prev) => {
-            // const copyPrev = [...prev];
-            // copyPrev[idx] ={
-            //     proteins: [...copyPrev[idx]["proteins"], copyPrev[idx]["proteins"][1] = minusP],
-            //     fats: [...copyPrev[idx]["fats"], copyPrev[idx]["fats"][1] = minusF],
-            //     carbohydrates: [...copyPrev[idx]["carbohydrates"], copyPrev[idx]["carbohydrates"][1] = minusC]
-            // }
-            // return copyPrev
-
-            return prev.map((meal, i) => {
-                // meal -- это объект
-
-                if (i === idx) {
-                    return {
-                        proteins: [meal.proteins[0], minusP],
-                        fats: [meal.fats[0], minusF],
-                        carbohydrates: [meal.carbohydrates[0], minusC]
-                    }
-                } else {
-                    return meal
-                }
-            })
-        });
-        
-
-        // Используем хук юзстейст
-        if (idx === 0) {
-            setSelectPoductBreakfast((prev) => {
-                // Проходимся по массива selectProduct, который 
-                // содержит в себе выбранные продукты
-                // Если текущий prev элемент из массива selectProduct совпадает
-                // с item кликнутым элементов, то мы удаляем item из selectProduct
-
-                return prev.filter(elem=> elem !== item)
-  
-            });  
-        } else if (idx === 1) {
-            setSelectProductLunch((prev) => {
-                // Проходимся по массива selectProduct, который 
-                // содержит в себе выбранные продукты
-                // Если текущий prev элемент из массива selectProduct совпадает
-                // с item кликнутым элементов, то мы удаляем item из selectProduct
-
-                return prev.filter(elem=> elem !== item)
-            });  
-        } else if (idx === 2) {
-            setSelectProductDinner((prev) => {
-                // Проходимся по массива selectProduct, который 
-                // содержит в себе выбранные продукты
-                // Если текущий prev элемент из массива selectProduct совпадает
-                // с item кликнутым элементов, то мы удаляем item из selectProduct
-                return prev.filter(elem=> elem !== item)
-            });  
-        }
-        
-    }
+ 
 
     useEffect(() => {
         if (inputSelectProduct && crossSelectProduct) {
@@ -230,14 +153,13 @@ export default function FoodDiary() {
 
                                         <div className={styles.wrapperSearch}>
                                             <div className={styles.writingSearch}>
-                                                <img src='/assets/icons/search.png' />
+                                                
+                                                <IconAndSelect 
+                                                    inputSelectProduct={inputSelectProduct}
+                                                    indexMeal={indexMeal}
+                                                />
 
-                                                <div
-                                                    className={`${styles.inputSearch} ${indexMeal}_mealsFlag`}
-                                                    ref={(el) =>{inputSelectProduct.current[indexMeal] = el}} 
-                                                >
-                                                    <span>Выбирите продукт</span>
-                                                </div>
+             
 
                                                 {/* Открываем выпадающий список в зависимоти от приема пищи */}
                                                 <div
@@ -283,37 +205,13 @@ export default function FoodDiary() {
                                     {/* columnSearch */}
 
                                     <div className={styles.columnData}>
-                                        <h3 className={styles.columnDataHeadline}>
-                                            23.11.24
-                                        </h3>
-
-                                        <div className={styles.nutrientsWrapper}> 
-                                            {mealsZBU.map((item, index) => {
-
-                                                if (indexMeal === index) {
-                                                    return (
-                                                        <div key={index}>
-                                                            {Object.keys(item).map((key) => (
-                                                                    <div
-                                                                        className={styles.nutrients}
-                                                                        key={key}
-                                                                        >
-                                                                        <span className={styles.nutrientName}>
-                                                                            {item[key][0]}{' '}(г)
-                                                                        </span>
-                                                                        <span className={styles.nutrientWeight}>
-                                                                            {item[key][1]}
-                                                                        </span>
-                                                                    </div>
-                                                                ),
-                                                            )}
-                                                        </div>
-                                                    );
-                                                }
-                                                
-                                            })}
-                                        </div>
-
+                                        <DataNowComponent mealsZBU={mealsZBU}/>
+                                        
+                                        <NutrientMetric 
+                                            mealsZBU={mealsZBU}
+                                            indexMeal={indexMeal}
+                                        />
+                                        
                                         {/* nutrients */}
                                     </div>
                                     {/* columnData */}
@@ -328,55 +226,11 @@ export default function FoodDiary() {
 
                 <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
                     <div className={styles.foodDiaryProgressWrapper}>
-                        <div className={styles.foodDiaryProgressHeadline}>
-                            <span className={styles.reslutOfDayText}>Результат за день</span>
-                            <span className={styles.reslutOfDayCount}>6 / 10</span>
-                        </div>
+                        <ProgressHeadline />
                         {/* foodDiaryProgressHeadline */}
 
-                        <div className={styles.resultBZUWrapper}>
-                            <div className={styles.resultBZURow}>
-                                <div className={styles.resultBZUImg}>
-                                    <img src='/assets/icons/chicken.png'/>
-                                </div>
-                                <div className={styles.resultBZUName}>
-                                    <span>Белки</span>
-                                </div>
-                                <div className={styles.resultBZUCount}>
-                                    <span>{mealsZBU[0].proteins[1] + mealsZBU[1].proteins[1] + mealsZBU[2].proteins[1]}</span>
-                                </div>
-
-                            </div>
-                            {/* resultBZURow */}
-
-                            <div className={styles.resultBZURow}>
-                                <div className={styles.resultBZUImg}>
-                                    <img src='/assets/icons/pear.png'/>
-                                </div>
-                                <div className={styles.resultBZUName}>
-                                    <span>Жиры</span>
-                                </div>
-                                <div className={styles.resultBZUCount}>
-                                    <span>{mealsZBU[0].fats[1] + mealsZBU[1].fats[1] + mealsZBU[2].fats[1]}</span>
-                                </div>
-
-                            </div>
-                            {/* resultBZURow */}
-
-                            <div className={styles.resultBZURow}>
-                                <div className={styles.resultBZUImg}>
-                                    <img src='/assets/icons/vegetables.png'/>
-                                </div>
-                                <div className={styles.resultBZUName}>
-                                    <span>Углеводы</span>
-                                </div>
-                                <div className={styles.resultBZUCount}>
-                                    <span>{mealsZBU[0].carbohydrates[1] + mealsZBU[1].carbohydrates[1] + mealsZBU[2].carbohydrates[1]}</span>
-                                </div>
-
-                            </div>
-                            {/* resultBZURow */}
-                        </div>
+                        <ResultBZU mealsZBU={mealsZBU} />
+                        
                     </div>
                 </div>
         </div>
