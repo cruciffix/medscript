@@ -3,9 +3,13 @@ import styles from '@/app/assets/ProgressLine.module.css';
 
 import { useState } from 'react';
 import HeaderAnother from '../components/HeaderAnother';
+import FilterShopOrInvent from '../components/componentsPages/shop/filterAndRating/FilterShopOrInvent';
+import CurrencyShop from '../components/componentsPages/shop/filterAndRating/CurrencyShop';
+import InventoryItem from '../components/componentsPages/shop/invenory/InventoryItem';
+import ShopItem from '../components/componentsPages/shop/invenory/ShopItem';
 
 export default function Shop() {
-    let [itemPageShop, setItemPageShop] = useState([
+    const [itemPageShop, setItemPageShop] = useState([
         {
             id: "valanchik",
             value: "Валанчик",
@@ -46,6 +50,30 @@ export default function Shop() {
         },
 
     ])
+    const [inventoryPageShop, setInventoryPageShop] = useState([
+        {
+            id: "valanchik",
+            value: "Валанчик",
+            img: "/assets/icons/valanchik.png",
+            price: 21,
+        },
+   
+        {
+            id: "jostik",
+            value: "Джойстик",
+            img: "/assets/icons/jostik.png",
+            price: 31,
+            
+        },
+
+        {
+            id: "cup",
+            value: "Кубрк",
+            img: "/assets/icons/cup.png",
+            price: 21,
+            
+        },
+    ])
     return (
         
         <div className="marginHorizontal">
@@ -53,15 +81,8 @@ export default function Shop() {
             <>
                 <div className={`${styles.filtersCurrency}`}>
                     <div className={styles.filtersCurrencyWrapper}>
-                        <div className={styles.filter}>
-                            <img src='/assets/icons/filter.png'/>
-                            <span>Фильтр</span>
-                        </div>
-
-                        <div className={styles.currency}>
-                            <img src='/assets/icons/star.png'/>
-                            <span>21</span>
-                        </div>
+                        <FilterShopOrInvent />
+                        <CurrencyShop />
                     </div>
                 </div>
 
@@ -71,23 +92,7 @@ export default function Shop() {
                         <div className={styles.headerShop}>
                             <h2>Инвентарь</h2>
                         </div>
-
-                            {itemPageShop.map(item => {
-                                return ( <div className={styles.inventoryItemRow}>
-                                    <div className={styles.itemImg}>
-                                        <img src={item.img}/>
-                                    </div>
-
-                                    <div className={styles.itemPrice}>
-                                        <span>{item.value}</span>
-                                    </div>
-
-                                </div>
-                                )
-                                {/* shopItemRow */}
-                            })}
-                            
-
+                        <InventoryItem inventoryPageShop={inventoryPageShop}/>
                     </div>
                     {/* shopWrapper */}
                 </div>
@@ -99,27 +104,8 @@ export default function Shop() {
                         <div className={styles.headerShop}>
                             <h2>Магазин</h2>
                         </div>
-
-                            {itemPageShop.map(item => {
-                                return (
-                                <div className={styles.shopItemRow}>
-                                    <div className={styles.itemImg}>
-                                        <img src={item.img}/>
-                                    </div>
-
-                                    <div className={`${styles.itemPrice} ${styles.shopRow}`}>
-                                        <img src='/assets/icons/star.png'/>
-                                        <span>{item.price}</span>
-                                    </div>
-                                    
-                                    <div>
-                                        <span className={styles.buy}>Купить</span>
-                                    </div>
-
-                                </div>
-                                )
-                                {/* shopItemRow */}
-                            })}
+                            <ShopItem itemPageShop={itemPageShop}/>
+                           
                     </div>
                     {/* shopWrapper */}
                 </div>
