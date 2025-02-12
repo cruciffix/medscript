@@ -814,3 +814,155 @@
     
 
 }
+
+
+/* ME */
+
+.avatarMeWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.avatarMe {
+
+    width: 170px;
+    height: 160px; 
+
+    padding-top: 10px;
+
+    text-align: center;
+
+    border-radius: 200px;
+    border: 4px solid #B1F0AA;
+
+    overflow: hidden;
+}
+
+.avatarMeImg {
+    width: 150px;
+    height: auto;
+}
+
+.myNameValue {
+    margin: 20px 0 0 0;
+
+    font-size: 40px;
+    font-weight: 600;
+    color: #3BBC2D;
+    text-align: center;
+}
+
+/* meticsAndPresentMe */
+.meticsAndPresentMe {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.meticsAndPresentMeWrapper {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 200px;
+
+    -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+
+    border-radius: 12px;
+}
+
+.metricsWaterWrapper {
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metricMeValue {
+    display: inline-block;
+    
+    margin: 15px 0 15px 0;
+
+    font-size: 20px;
+    font-weight: 600;
+    color: #3BBC2D
+}
+
+
+
+.lineNormalValueWater {
+    position: absolute;
+    /* top: 20px; */
+    bottom: 0;
+
+    width: 100%;
+    height: 65px;
+
+    /* background-color: #848383; */
+
+    border-top: 1px solid #848383;
+}
+
+.metricMeWaterrWrappeBg {
+    position: relative;
+
+    width: 60px;
+    height: 90px;
+
+    background-color: #F0F0F0;
+
+    border-radius: 0 0 25px 25px;
+
+    overflow: hidden;
+
+}
+
+
+
+.metricWaterMeBg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+    background-color: #90C6F0;
+
+    border-radius: 0 0 25px 25px;
+}
+
+
+.metricsKcals {
+    text-align: center;
+}
+
+.metricMeKcalsWrappeBg {
+    position: relative;
+
+    width: 130px;
+    height: 40px;
+    
+    background-color: #F0F0F0;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+}
+
+.metricKcalsMeBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 50px;
+    height: 100%;
+
+    background-color: #BDF090;
+
+    border-radius: 25px;
+
+}
