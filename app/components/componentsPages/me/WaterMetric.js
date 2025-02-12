@@ -1,66 +1,70 @@
+
+
 "use client"
 import styles from '@/app/assets/ProgressLine.module.css';
 import { useEffect, useRef, useState } from 'react';
 
 export default function WaterMetric() {
-    // kidWeight переменная, которая будет подтягиваться из БД (динамическая)
-    // Ее сам вводит ребенок, отвечая на то, скок он весит (кг)
-    let kidWeight = 40
 
-    // задаем число, которое будет равняться норме
-    let normallValue = kidWeight * 0.03;
+    // waterMetricValue -- это ток, сколько ребенок выпил
+    const [waterMetricValue, setWaterMetricValue] = useState(2);
 
+    // Получаем поле bgWater, которое будет менять свойство height 
+    // в зависимоти от того сколько ребенок выпил жидкости
+    let bg = useRef(null);
 
-    let waterValue = 0.1;
-    if (waterValue >= 100) waterValue = 100;
-    if (waterValue <= 0) waterValue = 0;
+    // Получаем поле bgWater, которое будет менять свойство top
+    // для того, чтобы установить норму
+    let normalLine = useRef(null)
+    let waterWrapper = useRef(null)
 
-    // Число, которе выводится
-    const [inputWaterValue, setInputWaterValue] = useState(waterValue)
+    // теоретически максимальный объем воды, который может выпить ребенок 
+    let maxValueWater = 4
 
-    // Цепляем ref на div, который будет закрашиваться
-    let metricMeWaterBg = useRef(null)
-    let normalLineWater = useRef(null)
-
-
+    // Высчитываем норму воду изходя из формулы: вес (weightKid) * 0.03;
+    let weightKid = 50;
+    let normalWaterValue = weightKid * 0.03;
 
     useEffect(() => {
-        // Ждем загрузки элементов, на которые повешен useRef
-        if (metricMeWaterBg && normalLineWater) {
-            // Узнаем fullHeight блока обертки, для того, чтобы взять это значение за 100%
-            // Исходя из этого мы будем размещать lineNormal в блоке
-            let fullHeight = +metricMeWaterBg.current.parentElement.offsetHeight
-
-            // Значение, при пересечение которого будет меняться цвет
-            // выше этого (нормы) -- красный
-            let normalHeight = +normalLineWater.current.offsetHeight
+        // в блоке if соверашем проверку:
+        // если прогрузилось, то выполнить блок кода
+        if (bg && normalLine) {
             
-            // Выставляет height у заливки согласно пропорции
-            // Это нужно, для того, чтобы высота выставлялась не в виде пикселей
-            // а в виде процентов
-            let showValue = (inputWaterValue * fullHeight) / normallValue
+            let fullSize = bg.current.parentElement.offsetHeight
+            // showResult -- значения, уже переведенные в проценты для нормального
+            // заполнения секции
 
-            metricMeWaterBg.current.style.height = showValue + "px"
-            if (showValue > normalHeight) {
-                metricMeWaterBg.current.style.backgroundColor = "#F09090"
-            }
+            // Спозициционируем normalLine относительно составленной пропорции
+            // Мы это делаем т.к. норма будет динамической (зависит от веса)
+            // maxValueWater (4 л) = fullSize (100px)
+            // normalWaterValue (1.2 л) = x
+            let normalLineResult = (normalWaterValue * fullSize) / maxValueWater;
+            let offsetHieghtWaterWrapper = waterWrapper.current.offsetHeight
+            normalLine.current.style.top = (offsetHieghtWaterWrapper - normalLineResult)  + "px";
+
+            // Увеличиваем свойство height (заливка);
+            // Мы это делаем т.к. объем выпитый воды будет изменяться в течение дня;
+            // Вначале соотнесем выпитый объем, к максимальному (получим процент)
+            // Потом умножим это все на fullSize
+            let showBgResult = (waterMetricValue / maxValueWater) * fullSize;
+            bg.current.style.height = showBgResult + "px";
         }
-
-        
     }, [])
 
     return (
-        <div className={styles.metricsWaterWrapper}>
-            <div className={styles.metricsWater}>
-                <span className={styles.metricMeValue} >{inputWaterValue} л</span>
+        <div ref={waterWrapper} className={styles.waterMetricWrapper}>
+            <div className={styles.waterMetricHeadlineWrapper}>
+                <span className={styles.waterMetricHeadline}>{waterMetricValue} л</span>
             </div>
 
-            
+            <div ref={normalLine} className={styles.normalLineAndValueWaterWrapper}>
+                <div className={styles.normalLineWater}></div>
+                <span className={styles.valueWater}>{normalWaterValue}</span>
+            </div>
 
-            <div className={styles.metricMeWaterrWrappeBg}>
-                <div ref={metricMeWaterBg} className={styles.metricWaterMeBg} ></div>
-
-                <div ref={normalLineWater} className={styles.lineNormalValueWater}></div>
+            <div className={styles.bgAndNormalLineWaterWrapper}>
+                <div ref={bg} className={styles.bgWater}>
+                </div>
             </div>
         </div>
     )

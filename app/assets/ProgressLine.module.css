@@ -874,67 +874,70 @@
     border-radius: 12px;
 }
 
-.metricsWaterWrapper {
-
+/* waterMetricWrapper */
+.waterMetricWrapper {
+    position: relative;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.metricMeValue {
-    display: inline-block;
-    
-    margin: 15px 0 15px 0;
-
-    font-size: 20px;
-    font-weight: 600;
-    color: #3BBC2D
-}
-
-
-
-.lineNormalValueWater {
-    position: absolute;
-    /* top: 20px; */
-    bottom: 0;
-
-    width: 100%;
-    height: 65px;
-
-    /* background-color: #848383; */
-
-    border-top: 1px solid #848383;
-}
-
-.metricMeWaterrWrappeBg {
-    position: relative;
 
     width: 60px;
-    height: 90px;
+    height: 120px;
+}
+
+.waterMetricHeadlineWrapper {
+    text-align: center;
+}
+
+.waterMetricHeadline {
+    color: #3BBC2D;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bgAndNormalLineWaterWrapper {
+    position: relative;
 
     background-color: #F0F0F0;
 
-    border-radius: 0 0 25px 25px;
+    height: 100%;
 
-    overflow: hidden;
-
+    border-radius: 0 0 20px 20px;
 }
 
+.normalLineAndValueWaterWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
 
+    display: flex;
+    align-items: center;
+}
 
-.metricWaterMeBg {
+.normalLineWater {
+    width: 60px;
+    height: 2px;
+    border-top: 2px solid green;
+}
+
+.bgWater {
     position: absolute;
     bottom: 0;
     left: 0;
 
     width: 100%;
-    height: 50px;
+    height: 40px;
+    
     background-color: #90C6F0;
 
-    border-radius: 0 0 25px 25px;
+    border-radius: 0 0 20px 20px;
 }
 
+
+
+/* metricsKcals */
 
 .metricsKcals {
     text-align: center;
@@ -965,4 +968,15 @@
 
     border-radius: 25px;
 
+}
+
+.normalLinekcal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100px;
+    height: 100%;
+
+    border-right: 1px solid #848383;
 }
