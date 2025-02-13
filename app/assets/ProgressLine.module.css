@@ -938,45 +938,33 @@
 
 
 /* metricsKcals */
-
 .metricsKcals {
     text-align: center;
 }
 
+
 .metricMeKcalsWrappeBg {
     position: relative;
 
-    width: 130px;
-    height: 40px;
-    
+    width: 120px;
+    height: 45px;
+
     background-color: #F0F0F0;
 
     border-radius: 25px;
-
     overflow: hidden;
 }
 
 .metricKcalsMeBg {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 50px;
-    height: 100%;
-
-    background-color: #BDF090;
-
-    border-radius: 25px;
-
-}
-
-.normalLinekcal {
-    position: absolute;
-    top: 0;
-    left: 0;
-
     width: 100px;
     height: 100%;
 
-    border-right: 1px solid #848383;
+    background-color: #BDF090;
+}
+
+.normalLineAndValueWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+
 }

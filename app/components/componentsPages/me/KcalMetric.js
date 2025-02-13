@@ -39,7 +39,7 @@ export default function KcalsMetric() {
 
 
             // Отображаем 
-            metricKcalsBg.current.style.width = inputKcalsValues + "px"
+            // metricKcalsBg.current.style.width = inputKcalsValues + "px"
         }
     }, [])
 
@@ -50,8 +50,12 @@ export default function KcalsMetric() {
             </div>
 
             <div className={styles.metricMeKcalsWrappeBg}>
-                <div ref={metricKcalsBg} className={styles.metricKcalsMeBg} ></div>
-                <div ref={normalLineKcal} className={styles.normalLinekcal}></div>
+                <div ref={metricKcalsBg} className={styles.metricKcalsMeBg}></div>
+
+                <div ref={normalLineKcal} className={styles.normalLineAndValueWrapper}>
+                    <div className={styles.normalLineKcals}></div>
+                    <div className={styles.normalLineKcals}>244</div>
+                </div>
             </div>
         </div>
     )
