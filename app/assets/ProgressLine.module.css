@@ -907,13 +907,13 @@
 
 .normalLineAndValueWaterWrapper {
     position: absolute;
-    top: 0;
+    top: 34px;
     left: 0;
     z-index: 1000;
     height: 100%;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .normalLineWater {

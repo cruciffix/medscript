@@ -22,7 +22,7 @@ export default function WaterMetric() {
     let maxValueWater = 4
 
     // Высчитываем норму воду изходя из формулы: вес (weightKid) * 0.03;
-    let weightKid = 50;
+    let weightKid = 20;
     let normalWaterValue = weightKid * 0.03;
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function WaterMetric() {
             // normalWaterValue (1.2 л) = x
             let normalLineResult = (normalWaterValue * fullSize) / maxValueWater;
             let offsetHieghtWaterWrapper = waterWrapper.current.offsetHeight
-            normalLine.current.style.top = (offsetHieghtWaterWrapper - normalLineResult)  + "px";
+            normalLine.current.style.top =(offsetHieghtWaterWrapper - normalLineResult) + "px";
 
             // Увеличиваем свойство height (заливка);
             // Мы это делаем т.к. объем выпитый воды будет изменяться в течение дня;
@@ -52,18 +52,19 @@ export default function WaterMetric() {
     }, [])
 
     return (
-        <div ref={waterWrapper} className={styles.waterMetricWrapper}>
+        <div  className={styles.waterMetricWrapper}>
             <div className={styles.waterMetricHeadlineWrapper}>
                 <span className={styles.waterMetricHeadline}>{waterMetricValue} л</span>
             </div>
 
-            <div ref={normalLine} className={styles.normalLineAndValueWaterWrapper}>
-                <div className={styles.normalLineWater}></div>
-                <span className={styles.valueWater}>{normalWaterValue}</span>
-            </div>
+            
 
-            <div className={styles.bgAndNormalLineWaterWrapper}>
-                <div ref={bg} className={styles.bgWater}>
+            <div ref={waterWrapper} className={styles.bgAndNormalLineWaterWrapper}>
+                <div ref={bg} className={styles.bgWater}></div>
+
+                <div ref={normalLine} className={styles.normalLineAndValueWaterWrapper}>
+                    <div className={styles.normalLineWater}></div>
+                    <span className={styles.valueWater}>{normalWaterValue}</span>
                 </div>
             </div>
         </div>
