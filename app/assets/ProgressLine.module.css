@@ -852,26 +852,37 @@
     text-align: center;
 }
 
-/* meticsAndPresentMe */
-.meticsAndPresentMe {
+/* meticstMe */
+.meticsMe {
     width: 100%;
+    height: 170px;
 
     display: flex;
-    justify-content: center;
-}
-
-.meticsAndPresentMeWrapper {
-    display: flex;
-    justify-content: space-evenly;
-
-    width: 100%;
-    height: 200px;
+    align-items: center;
 
     -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
 
     border-radius: 12px;
+
+
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.meticsMeWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    width: 100%;
+    /* height: 170px; */
+
+    
+
 }
 
 /* waterMetricWrapper */
@@ -896,13 +907,12 @@
 }
 
 .bgAndNormalLineWaterWrapper {
-    position: relative;
 
     background-color: #F0F0F0;
 
     height: 100%;
 
-    border-radius: 0 0 20px 20px;
+    border-radius: 5px 5px 20px 20px;
 }
 
 .normalLineAndValueWaterWrapper {
@@ -914,12 +924,47 @@
 
     display: flex;
     align-items: flex-start;
+    
+}
+
+.valueWater {
+    display: inline-block;
+
+    margin-top: -5px;
+    margin-left: 3px;
+    padding: 2px;
+    
+    font-size: 13px;
+    font-weight: 600;
+    color: #323232;
+
+    background-color: #C7FECC;
+
+    border-radius: 3px;
+
+}
+
+
+
+.currentWaterMetricWrapper {
+    position: absolute;
+    top: 50px;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.currentMetric {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(0,0,0, .5);
 }
 
 .normalLineWater {
     width: 60px;
     height: 2px;
-    border-top: 2px solid green;
+    border-top: 1px solid #C3C3C3;
 }
 
 .bgWater {
@@ -929,6 +974,8 @@
 
     width: 100%;
     height: 40px;
+
+    padding: 0;
     
     background-color: #90C6F0;
 
@@ -940,31 +987,134 @@
 /* metricsKcals */
 .metricsKcals {
     text-align: center;
+    color:#3BBC2D;
+    font-size: 18px;
+    font-weight: 600;
 }
-
-
-.metricMeKcalsWrappeBg {
+.bgAndNormalLineWrapper {
     position: relative;
 
-    width: 120px;
-    height: 45px;
+    width: 100px;
+    height: 40px;
+
 
     background-color: #F0F0F0;
 
-    border-radius: 25px;
-    overflow: hidden;
+    border-radius: 10px;
+
 }
 
-.metricKcalsMeBg {
-    width: 100px;
-    height: 100%;
-
-    background-color: #BDF090;
-}
-
-.normalLineAndValueWrapper {
+.bgWaterKcals {
     position: absolute;
     top: 0;
     left: 0;
 
+    height: 100%;
+
+    background-color: #BDF090;
+    /* border-right: 2px solid #C3C3C3; */
+    border-radius: 10px;
+}
+
+.currentKcalWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+
+}
+.currentKcal {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .5);
+}
+
+.normalLineWrapper {
+    position: absolute;
+    top: 0;
+    left: 70px;
+
+    width: 1px;
+    height: 100%;
+
+
+    background-color: #C3C3C3;
+}
+
+.valueKcal {
+    position: absolute;
+    left: 50%; /* Центрируем по горизонтали */
+    bottom: -24px; /* Оставляем отступ снизу */
+
+    transform: translateX(-50%); /* Смещаем назад на половину своей ширины */
+
+    padding: 2px;
+    
+    font-size: 13px;
+    font-weight: 600;
+    color: #323232;
+
+    background-color: #C7FECC;
+
+    border-radius: 3px;
+
+}
+
+.progessActivityWrapper {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 60px;
+    height: 120px;
+
+    border-radius: 10px;
+    
+    overflow: hidden;
+
+
+}
+/* ActivityMetric */
+.activityBgWrapper {
+    height: 100%;
+
+    border-radius: 10px;
+
+    background-color: #F0F0F0;
+
+}
+
+.activityBg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 30px;
+
+    background-color: #90F0E8;
+}
+
+/* TOP */
+.top {
+    margin-top: 30px;
+    padding: 20px 30px;
+
+    width: 100%;
+    height: 200px;
+
+    -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
+
+    border-radius: 12px;
+}
+
+/* headlineTopWrapper */
+.headlineTop {
+    font-size: 28px;
+    color: #3bbc2d;
 }

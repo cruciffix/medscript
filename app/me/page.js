@@ -1,34 +1,19 @@
 
-"use client"
-import styles from '@/app/assets/ProgressLine.module.css';
-import { useEffect, useRef, useState } from 'react';
-import WaterMetric from '../components/componentsPages/me/WaterMetric';
-import KcalsMetric from '../components/componentsPages/me/KcalMetric';
+import MetricsMe from '../components/componentsPages/me/metricsMe/MetricsMe';
+import AvatarAndName from '../components/componentsPages/me/AvatarAndName/AvatartAndName';
+import Top from '../components/componentsPages/me/top/Top';
 
 export default function Me() {
     
 
     return (
         <div className='marginHorizontal'>
-            <div className={styles.avatarAndMyNameMe}>
-                <div className={styles.avatarMeWrapper}>
-                    <div className={styles.avatarMe}>
-                        <img className={styles.avatarMeImg} src="/assets/avatar.png"/>
-                    </div>
-                </div>
+            
+            <AvatarAndName />
 
-                <div className={styles.myNameWrapper}>
-                    <h1 className={styles.myNameValue}>Антон</h1>
-                </div>
-            </div>
+            <MetricsMe />
 
-
-            <div className={styles.meticsAndPresentMe}>
-                <div className={styles.meticsAndPresentMeWrapper}>
-                    <WaterMetric />
-                    <KcalsMetric />
-                </div>
-            </div>
+            <Top />
         </div>
     )
 }

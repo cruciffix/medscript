@@ -6,8 +6,12 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function WaterMetric() {
 
+    let currentValue = 1.5;
+    if (currentValue >= 3) currentValue = 3;
+    if (currentValue <= 0) currentValue = 0;
+
     // waterMetricValue -- это ток, сколько ребенок выпил
-    const [waterMetricValue, setWaterMetricValue] = useState(2);
+    const [waterMetricValue, setWaterMetricValue] = useState(currentValue);
 
     // Получаем поле bgWater, которое будет менять свойство height 
     // в зависимоти от того сколько ребенок выпил жидкости
@@ -19,11 +23,11 @@ export default function WaterMetric() {
     let waterWrapper = useRef(null)
 
     // теоретически максимальный объем воды, который может выпить ребенок 
-    let maxValueWater = 4
+    let maxValueWater = 3
 
     // Высчитываем норму воду изходя из формулы: вес (weightKid) * 0.03;
-    let weightKid = 20;
-    let normalWaterValue = weightKid * 0.03;
+    let weightKid = 50;
+    let normalWaterValue = weightKid * 0.03; // 1.5
 
     useEffect(() => {
         // в блоке if соверашем проверку:
@@ -36,11 +40,11 @@ export default function WaterMetric() {
 
             // Спозициционируем normalLine относительно составленной пропорции
             // Мы это делаем т.к. норма будет динамической (зависит от веса)
-            // maxValueWater (4 л) = fullSize (100px)
-            // normalWaterValue (1.2 л) = x
+            // maxValueWater (3 л) = fullSize (100px)
+            // normalWaterValue (1.5 л) = x
             let normalLineResult = (normalWaterValue * fullSize) / maxValueWater;
             let offsetHieghtWaterWrapper = waterWrapper.current.offsetHeight
-            normalLine.current.style.top =(offsetHieghtWaterWrapper - normalLineResult) + "px";
+            normalLine.current.style.top =offsetHieghtWaterWrapper - normalLineResult + 20 + "px";
 
             // Увеличиваем свойство height (заливка);
             // Мы это делаем т.к. объем выпитый воды будет изменяться в течение дня;
@@ -54,7 +58,7 @@ export default function WaterMetric() {
     return (
         <div  className={styles.waterMetricWrapper}>
             <div className={styles.waterMetricHeadlineWrapper}>
-                <span className={styles.waterMetricHeadline}>{waterMetricValue} л</span>
+                <span className={styles.waterMetricHeadline}>{maxValueWater} л</span>
             </div>
 
             
@@ -62,7 +66,12 @@ export default function WaterMetric() {
             <div ref={waterWrapper} className={styles.bgAndNormalLineWaterWrapper}>
                 <div ref={bg} className={styles.bgWater}></div>
 
+                <div className={styles.currentWaterMetricWrapper}>
+                    <span className={styles.currentMetric}>{waterMetricValue}</span>
+                </div>
+
                 <div ref={normalLine} className={styles.normalLineAndValueWaterWrapper}>
+                    
                     <div className={styles.normalLineWater}></div>
                     <span className={styles.valueWater}>{normalWaterValue}</span>
                 </div>
