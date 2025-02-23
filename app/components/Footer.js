@@ -24,7 +24,7 @@ const Footer = () => {
                         className={styles.footerIcon}
                     />
                 </Link>
-                <Link href="/shop">
+                <Link href="/me">
                     <img
                         src="/assets/icons/customer.png"
                         className={styles.footerIcon}

@@ -1103,8 +1103,6 @@
     margin-top: 30px;
     padding: 20px 30px;
 
-    width: 100%;
-    height: 200px;
 
     -webkit-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 7px 12px 0px rgba(34, 60, 80, 0.2);
@@ -1117,4 +1115,135 @@
 .headlineTop {
     font-size: 28px;
     color: #3bbc2d;
+}
+
+/* topThree */
+
+.topThree {
+    display: flex;
+    flex-direction: column;
+}
+.rowTop {
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* numberTopThreeWrapper */
+
+
+.numberTopThree {
+    margin-right: 10px;
+
+    color:#3BBC2D;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* avatarAndNameWrapper */
+.avatarAndNameWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 80%;
+}
+
+.avatarImageWrapper {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatarImgTopThree {
+    width: 50px;
+    height: 50px;
+}
+
+.nameTopThree {
+    color: #3BBC2D;
+    font-size: 20px;
+}
+
+/* pointsTopThreeWrapper */
+.pointsTopThreeWrapper {
+    display: flex;
+    align-items: center;
+
+    width: 20%;
+}
+
+.points {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3BBC2D;
+}
+
+
+.dividingLine {
+    width: 100%;
+    height: 1px;
+
+    margin: 20px 0;
+
+    border-radius: 10px;
+
+    background-color: #3BBC2D;
+}
+
+/* headerInfoAboutMyProgress */
+.headerInfoAboutMyProgress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nameAndNumberOfTop {
+    font-size: 23px;
+    color: #3BBC2D;
+}
+
+.avatarMyProgpressWrapper {
+    width: 60px;
+    height: 70px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+}
+
+.avatarMyProgpress{
+    width: 60px;
+    height: auto;
+    object-fit: cover;
+}
+
+.myScoreWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.myScore {
+    font-size: 19px;
+    font-weight: 600;
+    color: #3BBC2D;
+}
+
+.motivationHeadline {
+    margin-top: 15px;
+
+    font-size: 17px;
+    font-weight: 600;
+    color: #D6886E;
+}
+
+.motivationText {
+    margin-top: 5px;
+
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3BBC2D;
 }

@@ -4,9 +4,9 @@ import styles from '@/app/assets/ProgressLine.module.css';
 export default function ShopItem({itemPageShop}) {
     return (
         <>
-            {itemPageShop.map(item => {
+            {itemPageShop.map((item, index) => {
                 return (
-                <div className={styles.shopItemRow}>
+                <div key={`${item}_${index}`} className={styles.shopItemRow}>
                     <div className={styles.itemImg}>
                         <img src={item.img}/>
                     </div>

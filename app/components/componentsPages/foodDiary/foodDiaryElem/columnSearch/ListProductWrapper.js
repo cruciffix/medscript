@@ -94,7 +94,7 @@ export default function ListProductWrapper({meals, crossSelectProduct,
                     if (index === indexMeal) {
                         return Object.keys(meals[indexMeal]).map((i, idx) => {
                             return (
-                                <div>
+                                <div key={`${item}_${index}`}>
                                     <span
                                         key={`${i}_${indexMeal}_${idx}`}
                                         // ${index}_mealsFlag -- ялвяется флагом для обозначения еды
