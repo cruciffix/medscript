@@ -18,7 +18,7 @@ export default function Questionnaire() {
         doSport: null,
         eatFastfood: null,
         goal: null,
-        motivation: null,
+        eatingHabits: null
     })
 
     const bgScroll = useRef(null)
@@ -27,9 +27,9 @@ export default function Questionnaire() {
             <div className={styles.questionnaire}>
                 <div ref={bgScroll} className={styles.questionnaireWrapper} style={{marginLeft: 0}}>
 
-                        {/* <SelectSex /> */}
+                        <SelectSex />
 
-                        {/* <UserParams /> */}
+                        <UserParams />
 
                         <SelectGoals />
                         
