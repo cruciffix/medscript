@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer className="marginVertivalBetweenSections">
             <div className={styles.footerWrapper}>
-                <Link href="/">
+                <Link href="/main">
                     <img
                         src="/assets/icons/home.png"
                         className={styles.footerIcon}

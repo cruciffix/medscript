@@ -7,6 +7,7 @@ import FilterShopOrInvent from '../components/componentsPages/shop/filterAndRati
 import CurrencyShop from '../components/componentsPages/shop/filterAndRating/CurrencyShop';
 import InventoryItem from '../components/componentsPages/shop/invenory/InventoryItem';
 import ShopItem from '../components/componentsPages/shop/invenory/ShopItem';
+import Footer from '../components/Footer';
 
 export default function Shop() {
     const [itemPageShop, setItemPageShop] = useState([
@@ -75,42 +76,44 @@ export default function Shop() {
         },
     ])
     return (
-        
-        <div className="marginHorizontal">
-            <HeaderAnother h1={"Магазин"}/>
-            <>
-                <div className={`${styles.filtersCurrency}`}>
-                    <div className={styles.filtersCurrencyWrapper}>
-                        <FilterShopOrInvent />
-                        <CurrencyShop />
-                    </div>
-                </div>
-
-                {/* Секция с инвентарем */}
-                <div className={`marginVertivalBetweenSections`}>
-                    <div className={styles.shopWrapper}>
-                        <div className={styles.headerShop}>
-                            <h2>Инвентарь</h2>
+        <>
+            <div className="marginHorizontal">
+                <HeaderAnother h1={"Магазин"}/>
+                <>
+                    <div className={`${styles.filtersCurrency}`}>
+                        <div className={styles.filtersCurrencyWrapper}>
+                            <FilterShopOrInvent />
+                            <CurrencyShop />
                         </div>
-                        <InventoryItem inventoryPageShop={inventoryPageShop}/>
                     </div>
-                    {/* shopWrapper */}
-                </div>
 
-                
-                {/* Секция с магазином */}
-                <div className={`marginVertivalBetweenSections`}>
-                    <div className={styles.shopWrapper}>
-                        <div className={styles.headerShop}>
-                            <h2>Магазин</h2>
+                    {/* Секция с инвентарем */}
+                    <div className={`marginVertivalBetweenSections`}>
+                        <div className={styles.shopWrapper}>
+                            <div className={styles.headerShop}>
+                                <h2>Инвентарь</h2>
+                            </div>
+                            <InventoryItem inventoryPageShop={inventoryPageShop}/>
                         </div>
-                            <ShopItem itemPageShop={itemPageShop}/>
-                           
+                        {/* shopWrapper */}
                     </div>
-                    {/* shopWrapper */}
-                </div>
-                
-            </>
-        </div>
+
+                    
+                    {/* Секция с магазином */}
+                    <div className={`marginVertivalBetweenSections`}>
+                        <div className={styles.shopWrapper}>
+                            <div className={styles.headerShop}>
+                                <h2>Магазин</h2>
+                            </div>
+                                <ShopItem itemPageShop={itemPageShop}/>
+                            
+                        </div>
+                        {/* shopWrapper */}
+                    </div>
+                    
+                </>
+            </div>
+            <Footer />
+        </>
     )
 }

@@ -11,6 +11,7 @@ import GraphRowWrapperComponent from "../components/componentsPages/index/weight
 import InfoActivityRowComponent from "../components/componentsPages/index/activityChart/InfoActivityRow";
 import AnalyticsMetrica from "../components/componentsPages/index/analitics/AnalyticsMetrica";
 import ActivityChart from "../components/componentsPages/index/activityChart/ActivityChart";
+import Footer from "../components/Footer";
 
 export default function Home() {
     
@@ -31,71 +32,75 @@ export default function Home() {
         },
     ];
     return (
-        <div className="marginHorizontal">
-            <Header />
+        <>
+            <div className="marginHorizontal">
+                <Header />
 
-            <ProgressLine />
+                <ProgressLine />
 
-            <div className={`marginVertivalBetweenSections paddingInnerBlock ${styles.ratingAndMessage}`}>
-                <div className={styles.ratingInfoWrapper}>
-                    <CheckMessageComponent
-                        checkMessage={checkMessage}
-                        isCheckMessage={isCheckMessage}
-                        arr={arr}/>
+                <div className={`marginVertivalBetweenSections paddingInnerBlock ${styles.ratingAndMessage}`}>
+                    <div className={styles.ratingInfoWrapper}>
+                        <CheckMessageComponent
+                            checkMessage={checkMessage}
+                            isCheckMessage={isCheckMessage}
+                            arr={arr}/>
 
-                    <RatingComponent />
-                </div>
-
-                <div
-                    className={`${styles.messageField} ${checkMessage && styles.dNone}`}
-                >
-                    <MessagesComponent arr={arr} />
-                    
-                </div>
-            </div>
-
-            <div className={`marginVertivalBetweenSections  ${styles.avatarAndweightDynamics}`}>
-                <AvatarComponent />
-
-                <div className={styles.weightDynamics}>
-                    <h5>Динамика веса</h5>
-
-                    <GraphRowWrapperComponent />
-
-                </div>
-            </div>
-
-            <div className={`${styles.analytics}`}>
-                <div className={styles.analyticsWrapper}>
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetrica />
-                        <AnalyticsMetrica />
+                        <RatingComponent />
                     </div>
 
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetrica />
-                        <AnalyticsMetrica />
-                    </div>
-
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetrica />
-                        <AnalyticsMetrica />
+                    <div
+                        className={`${styles.messageField} ${checkMessage && styles.dNone}`}
+                    >
+                        <MessagesComponent arr={arr} />
+                        
                     </div>
                 </div>
-            </div>
 
-            <div className={`marginVertivalBetweenSections ${styles.activityChartAndInfo}`}>
-                <div className={styles.activityChartWrapper}>
-                    <ActivityChart />
+                <div className={`marginVertivalBetweenSections  ${styles.avatarAndweightDynamics}`}>
+                    <AvatarComponent />
+
+                    <div className={styles.weightDynamics}>
+                        <h5>Динамика веса</h5>
+
+                        <GraphRowWrapperComponent />
+
+                    </div>
                 </div>
 
-                <div className={styles.infoActivityWrapper}>
-                    <InfoActivityRowComponent />
-                    <InfoActivityRowComponent />
-                    <InfoActivityRowComponent />
+                <div className={`${styles.analytics}`}>
+                    <div className={styles.analyticsWrapper}>
+                        <div className={styles.analyticsRow}>
+                            <AnalyticsMetrica />
+                            <AnalyticsMetrica />
+                        </div>
+
+                        <div className={styles.analyticsRow}>
+                            <AnalyticsMetrica />
+                            <AnalyticsMetrica />
+                        </div>
+
+                        <div className={styles.analyticsRow}>
+                            <AnalyticsMetrica />
+                            <AnalyticsMetrica />
+                        </div>
+                    </div>
                 </div>
+
+                <div className={`marginVertivalBetweenSections ${styles.activityChartAndInfo}`}>
+                    <div className={styles.activityChartWrapper}>
+                        <ActivityChart />
+                    </div>
+
+                    <div className={styles.infoActivityWrapper}>
+                        <InfoActivityRowComponent />
+                        <InfoActivityRowComponent />
+                        <InfoActivityRowComponent />
+                    </div>
+                </div>
+                {/* activityChartAndInfo */}
+
             </div>
-            {/* activityChartAndInfo */}
-        </div>
+            <Footer />
+        </>
     );
 }

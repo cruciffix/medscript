@@ -13,6 +13,7 @@ import NutrientMetric from '../components/componentsPages/foodDiary/foodDiaryEle
 import IconAndSelect from '../components/componentsPages/foodDiary/foodDiaryElem/columnSearch/IconAndSelect';
 import ProgressHeadline from '../components/componentsPages/foodDiary/foodDiaryProgress/ProgressHeadline';
 import ResultBZU from '../components/componentsPages/foodDiary/foodDiaryProgress/ResultBZU';
+import Footer from '../components/Footer';
 
 export default function FoodDiary() {
     // Под 0 индексом -- завтрак
@@ -134,105 +135,109 @@ export default function FoodDiary() {
     }, []);
 
     return (
-        <div className="marginHorizontal">
-            <HeaderAnother h1={"Пищевой дневник"}/>
-            
-                <div className={` ${styles.foodDiaryLayout}`}>
-                    <div className={styles.foodDiaryWrapper}>
-                        {/* Создаем три одинаковых карточки завтра | обед | ужин */}
-                        {meals.map((meal, indexMeal) => {
-                            return (
-                                <div 
-                                    className={styles.foodDiaryElem} 
-                                    style={{marginTop: indexMeal == 0 && 0 + "px"}} 
-                                    key={`_${indexMeal}`}
-                                >
-                                    <div className={styles.columnSearch}>
-                                        <HeadlineFood indexMeal={indexMeal}/>
-                                        
+        <>
+            <div className="marginHorizontal">
+                <HeaderAnother h1={"Пищевой дневник"}/>
+                
+                    <div className={` ${styles.foodDiaryLayout}`}>
+                        <div className={styles.foodDiaryWrapper}>
+                            {/* Создаем три одинаковых карточки завтра | обед | ужин */}
+                            {meals.map((meal, indexMeal) => {
+                                return (
+                                    <div 
+                                        className={styles.foodDiaryElem} 
+                                        style={{marginTop: indexMeal == 0 && 0 + "px"}} 
+                                        key={`_${indexMeal}`}
+                                    >
+                                        <div className={styles.columnSearch}>
+                                            <HeadlineFood indexMeal={indexMeal}/>
+                                            
 
-                                        <div className={styles.wrapperSearch}>
-                                            <div className={styles.writingSearch}>
-                                                
-                                                <IconAndSelect 
-                                                    inputSelectProduct={inputSelectProduct}
-                                                    indexMeal={indexMeal}
-                                                />
-
-             
-
-                                                {/* Открываем выпадающий список в зависимоти от приема пищи */}
-                                                <div
-                                                    className={`${styles.fieldSelectProduct }
+                                            <div className={styles.wrapperSearch}>
+                                                <div className={styles.writingSearch}>
                                                     
-                                                    ${indexMeal === 0 && showFieldSelectProductBreakfast && styles.dNone}
-                                                    ${indexMeal === 1 && showFieldSelectProductLunch && styles.dNone}
-                                                    ${indexMeal === 2 && showFieldSelectProductDinner && styles.dNone}`}
-                                                >
-                                                    <ListProductWrapper 
-                                                        meals={meals}
-                                                        mealsZBU={mealsZBU}
-                                                        crossSelectProduct={crossSelectProduct}
+                                                    <IconAndSelect 
+                                                        inputSelectProduct={inputSelectProduct}
                                                         indexMeal={indexMeal}
-                                                        selectPoductBreakfast={selectPoductBreakfast}
-                                                        selectProductLunch={selectProductLunch}
-                                                        selectProductDinner={selectProductDinner}
-                                                        setSelectPoductBreakfast={setSelectPoductBreakfast}
-                                                        setSelectProductLunch={setSelectProductLunch}
-                                                        setSelectProductDinner={setSelectProductDinner}
-                                                        setMealsZBU={setMealsZBU}
-                                                        selectProducts={selectProducts}
                                                     />
-                                                    
+
+                
+
+                                                    {/* Открываем выпадающий список в зависимоти от приема пищи */}
+                                                    <div
+                                                        className={`${styles.fieldSelectProduct }
+                                                        
+                                                        ${indexMeal === 0 && showFieldSelectProductBreakfast && styles.dNone}
+                                                        ${indexMeal === 1 && showFieldSelectProductLunch && styles.dNone}
+                                                        ${indexMeal === 2 && showFieldSelectProductDinner && styles.dNone}`}
+                                                    >
+                                                        <ListProductWrapper 
+                                                            meals={meals}
+                                                            mealsZBU={mealsZBU}
+                                                            crossSelectProduct={crossSelectProduct}
+                                                            indexMeal={indexMeal}
+                                                            selectPoductBreakfast={selectPoductBreakfast}
+                                                            selectProductLunch={selectProductLunch}
+                                                            selectProductDinner={selectProductDinner}
+                                                            setSelectPoductBreakfast={setSelectPoductBreakfast}
+                                                            setSelectProductLunch={setSelectProductLunch}
+                                                            setSelectProductDinner={setSelectProductDinner}
+                                                            setMealsZBU={setMealsZBU}
+                                                            selectProducts={selectProducts}
+                                                        />
+                                                        
+                                                    </div>
+                                                    {/* fieldSelectProduct */}
                                                 </div>
-                                                {/* fieldSelectProduct */}
+
+                                                <PhotoSearch />
                                             </div>
-
-                                            <PhotoSearch />
+                                            <ListsSelectFoodComponent 
+                                                selectProducts={selectProducts}
+                                                indexMeal={indexMeal}
+                                                meals={meals}
+                                                mealsZBU={mealsZBU}
+                                                setMealsZBU={setMealsZBU}
+                                                setSelectPoductBreakfast={setSelectPoductBreakfast}
+                                                setSelectProductLunch={setSelectProductLunch}
+                                                setSelectProductDinner={setSelectProductDinner}
+                                            />
+                                            
                                         </div>
-                                        <ListsSelectFoodComponent 
-                                            selectProducts={selectProducts}
-                                            indexMeal={indexMeal}
-                                            meals={meals}
-                                            mealsZBU={mealsZBU}
-                                            setMealsZBU={setMealsZBU}
-                                            setSelectPoductBreakfast={setSelectPoductBreakfast}
-                                            setSelectProductLunch={setSelectProductLunch}
-                                            setSelectProductDinner={setSelectProductDinner}
-                                        />
-                                        
+                                        {/* columnSearch */}
+
+                                        <div className={styles.columnData}>
+                                            <DataNowComponent mealsZBU={mealsZBU}/>
+                                            
+                                            <NutrientMetric 
+                                                mealsZBU={mealsZBU}
+                                                indexMeal={indexMeal}
+                                            />
+                                            
+                                            {/* nutrients */}
+                                        </div>
+                                        {/* columnData */}
                                     </div>
-                                    {/* columnSearch */}
-
-                                    <div className={styles.columnData}>
-                                        <DataNowComponent mealsZBU={mealsZBU}/>
-                                        
-                                        <NutrientMetric 
-                                            mealsZBU={mealsZBU}
-                                            indexMeal={indexMeal}
-                                        />
-                                        
-                                        {/* nutrients */}
-                                    </div>
-                                    {/* columnData */}
-                                </div>
-                            );
-                            {
-                                /* foodDiaryElem */
-                            }
-                        })}
+                                );
+                                {
+                                    /* foodDiaryElem */
+                                }
+                            })}
+                        </div>
                     </div>
-                </div>
 
-                <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
-                    <div className={styles.foodDiaryProgressWrapper}>
-                        <ProgressHeadline />
-                        {/* foodDiaryProgressHeadline */}
+                    <div className={`marginVertivalBetweenSections ${styles.foodDiaryProgress}`}>
+                        <div className={styles.foodDiaryProgressWrapper}>
+                            <ProgressHeadline />
+                            {/* foodDiaryProgressHeadline */}
 
-                        <ResultBZU mealsZBU={mealsZBU} />
-                        
+                            <ResultBZU mealsZBU={mealsZBU} />
+                            
+                        </div>
                     </div>
-                </div>
-        </div>
+            </div>
+            <Footer />
+        </>
+        
     );
 }
