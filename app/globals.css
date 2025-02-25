@@ -16,3 +16,15 @@
 .paddingInnerBlock {
     padding: 6px 20px 18px 20px;
 }
+
+
+
+  input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Скрываем стрелочки в WebKit-браузерах (Chrome, Safari) */
+  margin: 0; /* Убираем отступы */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Скрываем стрелочки в Firefox */
+}
