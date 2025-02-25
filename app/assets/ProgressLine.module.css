@@ -1298,7 +1298,7 @@
 
     transition: .2s all;
 
-
+    font-size: 15px;
 }
 
 .carouselParams {
@@ -1371,7 +1371,6 @@
     
     margin: 20px 0 5px 0;
 
-    font-size: 16px;
     color: #3BBC2D;
     font-weight: 600;
 }
@@ -1452,7 +1451,6 @@
     padding-left: 10px;
 
     color: #3BBC2D;
-    font-size: 14px;
 
 
     border: none;
@@ -1529,7 +1527,6 @@
     width: 95%;
 
     color: #757575;
-    font-size: 14px;
 
     padding-left: 10px;
 }

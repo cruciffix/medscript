@@ -1,5 +1,5 @@
 import styles from "@/app/assets/ProgressLine.module.css";
-import { DataContext } from "@/app/helloPage/questionnaire/page";
+import { DataContext } from "@/app/questionnaire/page";
 import { useContext, useState } from "react";
 
 export default function FieldDropDown({ref, showDropDown, goalItems, name,}) {

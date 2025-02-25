@@ -1,5 +1,6 @@
 import styles from "@/app/assets/ProgressLine.module.css";
-import { DataContext } from "@/app/helloPage/questionnaire/page";
+import { DataContext } from "@/app/questionnaire/page";
+import Link from "next/link";
 import { useContext, useState } from "react";
 
 export default function ButtonGo({bgScroll}) {
@@ -17,7 +18,9 @@ export default function ButtonGo({bgScroll}) {
         <>
             {buttonSend ? (
                 <div className={styles.buttonGoWrapper}>
+                    <Link href="/main">
                     <button onClick={nextGo} className={styles.buttonGo}>Далее</button>
+                    </Link>
                 </div>
             ) : (
                 <div className={styles.buttonGoWrapper}>

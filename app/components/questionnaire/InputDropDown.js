@@ -1,7 +1,7 @@
 import styles from "@/app/assets/ProgressLine.module.css";
 import FieldDropDown from "./FieldDropDown";
 import { useContext, useRef, useState } from "react";
-import { DataContext } from "@/app/helloPage/questionnaire/page";
+import { DataContext } from "@/app/questionnaire/page";
 
 export default function InputDropDown({title, goalItems, name}) {
     const {data, setData} = useContext(DataContext)

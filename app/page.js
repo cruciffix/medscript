@@ -1,110 +1,39 @@
-"use client";
+
+"use client"
 import styles from "@/app/assets/ProgressLine.module.css";
-import { useEffect, useState, useRef } from "react";
-import Header from "./components/Header";
-import ProgressLineComponent from "./components/componentsPages/index/progressLine/ProgressLine";
-import CheckMessageComponent from "./components/componentsPages/index/ratingInfoWrapper/CheckMessageComponent";
-import RatingComponent from "./components/componentsPages/index/ratingInfoWrapper/Rating";
-import MessagesComponent from "./components/componentsPages/index/messageField/Messages";
-import AvatarComponent from "./components/componentsPages/index/Avatar/AvatarComponent";
-import GraphRowWrapperComponent from "./components/componentsPages/index/weightDynamics/GraphRowWrapper";
-import AnalyticsMetricaComponent from "./components/componentsPages/index/analitics/AnalyticsMetrica";
-import ActivityChartComponent from "./components/componentsPages/index/activityChart/ActivityChart";
-import InfoActivityRowComponent from "./components/componentsPages/index/activityChart/InfoActivityRow";
+import Image from "next/image";
+import logo from "@/public/logo.png"
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function Home() {
-    
+export default function HelloPage() {
+    const router = useRouter(); // Получаем объект router
 
-    const [checkMessage, isCheckMessage] = useState(true);
+    // Используем useEffect для редиректа через 2 секунды
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            router.push("/questionnaire"); // Укажите путь, на который нужно перенаправить
+        }, 2000); // 2000 мс = 2 секунды
 
-
-
-    const arr = [
-        {
-            title: "Сообщение никите",
-            body: "Никитос, проект делается, все на мази вроде как",
-        },
-        {
-            title: "Сообщение никите",
-            body: "Никитос, проект делается, все на мази вроде как",
-        },
-        {
-            title: "ДАВАНИКА ПРИВЕТ",
-            body: "Никитос, проект делается, все на мази вроде как",
-        },
-    ];
-
-
-    
+        // Очищаем таймер при размонтировании компонента
+        return () => clearTimeout(timer);
+    }, [router]); // Зависимость от router
 
 
     return (
-        <div className="marginHorizontal">
-            <Header />
+        <div className={styles.helloPage}>
 
-            <ProgressLineComponent />
-
-
-            <div className={`marginVertivalBetweenSections paddingInnerBlock ${styles.ratingAndMessage}`}>
-                <div className={styles.ratingInfoWrapper}>
-                    <CheckMessageComponent
-                        checkMessage={checkMessage}
-                        isCheckMessage={isCheckMessage}
-                        arr={arr}/>
-
-                    <RatingComponent />
+            <div className={styles.helloPageWrapper}>
+                <div className={styles.helloPageLogoWrapper}>
+                    <Image 
+                        alt="logo"
+                        src={logo}
+                        className={styles.logoHelloPage}
+                    />
                 </div>
-
-                <div
-                    className={`${styles.messageField} ${checkMessage && styles.dNone}`}
-                >
-                    <MessagesComponent arr={arr} />
-                    
-                </div>
+                <h1 className={styles.nameApp}>MED<span>SCRIPT</span></h1>
             </div>
-
-            <div className={`marginVertivalBetweenSections  ${styles.avatarAndweightDynamics}`}>
-                <AvatarComponent />
-
-                <div className={styles.weightDynamics}>
-                    <h5>Динамика веса</h5>
-
-                    <GraphRowWrapperComponent />
-
-                </div>
-            </div>
-
-            <div className={`${styles.analytics}`}>
-                <div className={styles.analyticsWrapper}>
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetricaComponent />
-                        <AnalyticsMetricaComponent />
-                    </div>
-
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetricaComponent />
-                        <AnalyticsMetricaComponent />
-                    </div>
-
-                    <div className={styles.analyticsRow}>
-                        <AnalyticsMetricaComponent />
-                        <AnalyticsMetricaComponent />
-                    </div>
-                </div>
-            </div>
-
-            <div className={`marginVertivalBetweenSections ${styles.activityChartAndInfo}`}>
-                <div className={styles.activityChartWrapper}>
-                    <ActivityChartComponent />
-                </div>
-
-                <div className={styles.infoActivityWrapper}>
-                    <InfoActivityRowComponent />
-                    <InfoActivityRowComponent />
-                    <InfoActivityRowComponent />
-                </div>
-            </div>
-            {/* activityChartAndInfo */}
+            
         </div>
-    );
+    )
 }
